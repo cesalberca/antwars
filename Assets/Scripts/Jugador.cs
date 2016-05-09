@@ -1,10 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
+using System.Collections.Generic;
 
-public class Jugador : MonoBehaviour {
+public class Jugador : Personaje{
 
-	// Use this for initialization
-	void Start () {
+    public Arma armaSeleccionada;
+    public List<Arma> almacenArmas = new List<Arma>();
+
+    // Use this for initialization
+    void Start () {
 	
 	}
 	
@@ -12,4 +17,24 @@ public class Jugador : MonoBehaviour {
 	void Update () {
 	
 	}
+
+    void elegirSiguienteArma()
+    {
+        armaSeleccionada = almacenArmas.Find(armaSeleccionada.id);
+    }
+
+    void elegirArma(Arma armaElegida)
+    {
+        armaSeleccionada = armaElegida;
+    }
+
+    protected override void choqueConObjeto<T>(T componente)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void mover(Vector2 destino)
+    {
+        throw new NotImplementedException();
+    }
 }
