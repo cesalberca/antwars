@@ -1,0 +1,35 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class ArmaBasica : MonoBehaviour {
+
+    public int id;
+    public int dano;
+    public int rango;
+    public int amplitud;
+    public int velocidadDisparo;
+    public Camera camaraPrincipal;
+    public GameObject bala;
+
+    /// <summary>
+    /// cambiar para que sus hijos tengas distintos tipos de disparo
+    /// </summary>
+    void disparar()
+    {
+        
+    }
+
+    private Vector3 getMousePosition()
+    {
+        Vector3 mousePos = new Vector2(camaraPrincipal.ScreenToWorldPoint(Input.mousePosition).x, camaraPrincipal.ScreenToWorldPoint(Input.mousePosition).y);
+        return mousePos;
+    }
+
+    public Vector2 getDireccionDisparo()
+    {
+        Vector2 direccion = getMousePosition() - this.transform.position;
+        return direccion;
+    }
+
+    
+}

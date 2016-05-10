@@ -11,8 +11,8 @@ public class Jugador : Personaje{
     private int almacenMateriales = 100;                    //la cantidad de materiales que tiene el jugador
 
     //cosas a crear
-    private Arma armaSeleccionada;
-    private List<Arma> almacenArmas = new List<Arma>();
+    private ArmaBasica armaSeleccionada;
+    private List<ArmaBasica> almacenArmas = new List<ArmaBasica>();
     
 
     // Use this for initialization
@@ -30,7 +30,7 @@ public class Jugador : Personaje{
         armaSeleccionada = almacenArmas[index];
     }
 
-    void elegirArma(Arma armaElegida)
+    void elegirArma(ArmaBasica armaElegida)
     {
         armaSeleccionada = armaElegida;
     }
