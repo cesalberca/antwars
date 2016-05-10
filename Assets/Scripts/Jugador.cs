@@ -22,7 +22,7 @@ public class Jugador : Personaje{
 	
 	// Update is called once per frame
 	void Update () {
-	
+        mover(new Vector2());
 	}
 
     void elegirArmaPorIndex(int index)
