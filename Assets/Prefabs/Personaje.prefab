@@ -55,6 +55,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d530f597b1fff1e498398d4fa230dbd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  velocidad: 0.05
+  vida: 100
+  capa:
+    serializedVersion: 2
+    m_Bits: 0
+  camaraPrincipal: {fileID: 0}
+  distanciaInteraccion: 5
+  almacenArmas:
+  - {fileID: 151158, guid: 3beeaf60e14c3a248ba9de8e80b03f62, type: 2}
+  - {fileID: 0}
 --- !u!212 &21254678
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -91,7 +101,19 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: almacenArmas.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: velocidad
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: almacenArmas.Array.data[0]
+      value: 
+      objectReference: {fileID: 151158, guid: 3beeaf60e14c3a248ba9de8e80b03f62, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 147208}

@@ -5,9 +5,9 @@ public class ArmaBasica : MonoBehaviour {
 
     public int id;
     public int dano;
-    public int rango;
+    public int potencia;
     public int amplitud;
-    public int velocidadDisparo;
+    public float velocidadDisparo;
     public Camera camaraPrincipal;
     public GameObject bala;
 

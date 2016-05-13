@@ -9,20 +9,24 @@ public class Jugador : Personaje{
     public Camera camaraPrincipal;                          //la camara principal que se quiere que siga al personaje
     public int distanciaInteraccion = 5;                    //la distancia a la que se pueden interactuar
     private int almacenMateriales = 100;                    //la cantidad de materiales que tiene el jugador
+    public List<GameObject> almacenArmas;
 
     //cosas a crear
-    private ArmaBasica armaSeleccionada;
-    private List<ArmaBasica> almacenArmas = new List<ArmaBasica>();
+    private GameObject armaSeleccionada;
+    //public List<ArmaBasica> almacenArmas = new List<ArmaBasica>();
     
 
     // Use this for initialization
     void Start () {
-	    
+        elegirArmaPorIndex(0);
 	}
 	
 	// Update is called once per frame
 	void Update () {
         mover(new Vector2());
+        if (Input.GetKey(KeyCode.Q)){
+
+        }
 	}
 
     void elegirArmaPorIndex(int index)
@@ -30,9 +34,10 @@ public class Jugador : Personaje{
         armaSeleccionada = almacenArmas[index];
     }
 
-    void elegirArma(ArmaBasica armaElegida)
+    void aparecerArma()
     {
-        armaSeleccionada = armaElegida;
+        GameObject nuevaArma;
+        nuevaArma = Instantiate(armaSeleccionada, new Vector2(this.transform.position.x, this.transform.position.y), Quaternion.identity) as GameObject;
     }
     
     /// <summary>
@@ -44,27 +49,27 @@ public class Jugador : Personaje{
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
             Vector3 position = this.transform.position;
-            position.x -= 0.05f;
+            position.x -= velocidad;
             transform.localRotation = Quaternion.Euler(0, 180, 0);
             this.transform.position = position;
         }
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
             Vector3 position = this.transform.position;
-            position.x += 0.05f;
+            position.x += velocidad;
             transform.localRotation = Quaternion.Euler(0, 0, 0);
             this.transform.position = position;
         }
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
             Vector3 position = this.transform.position;
-            position.y += 0.05f;
+            position.y += velocidad;
             this.transform.position = position;
         }
         if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
         {
             Vector3 position = this.transform.position;
-            position.y -= 0.05f;
+            position.y -= velocidad;
             this.transform.position = position;
         }
     }
