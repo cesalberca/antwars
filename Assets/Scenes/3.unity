@@ -184,8 +184,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dampTime: 0.15
-  objetivo: {fileID: 1382050562}
---- !u!1001 &1140587551
+  objetivo: {fileID: 1913427617}
+--- !u!1001 &1251161078
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -228,72 +228,10 @@ Prefab:
       propertyPath: camaraPrincipal
       value: 
       objectReference: {fileID: 748673132}
-    - target: {fileID: 11415624, guid: c978f126093797246a56686de074a757, type: 2}
-      propertyPath: velocidad
-      value: 0.05
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c978f126093797246a56686de074a757, type: 2}
   m_IsPrefabParent: 0
---- !u!4 &1382050562 stripped
+--- !u!4 &1913427617 stripped
 Transform:
   m_PrefabParentObject: {fileID: 420278, guid: c978f126093797246a56686de074a757, type: 2}
-  m_PrefabInternal: {fileID: 1140587551}
---- !u!1001 &1850050830
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1382050562}
-    m_Modifications:
-    - target: {fileID: 433168, guid: 8bc043117f2c65341ab8b6e384da977f, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0.166
-      objectReference: {fileID: 0}
-    - target: {fileID: 433168, guid: 8bc043117f2c65341ab8b6e384da977f, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 433168, guid: 8bc043117f2c65341ab8b6e384da977f, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -10
-      objectReference: {fileID: 0}
-    - target: {fileID: 433168, guid: 8bc043117f2c65341ab8b6e384da977f, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 433168, guid: 8bc043117f2c65341ab8b6e384da977f, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 433168, guid: 8bc043117f2c65341ab8b6e384da977f, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0.7029736
-      objectReference: {fileID: 0}
-    - target: {fileID: 433168, guid: 8bc043117f2c65341ab8b6e384da977f, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 0.7112159
-      objectReference: {fileID: 0}
-    - target: {fileID: 433168, guid: 8bc043117f2c65341ab8b6e384da977f, type: 2}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11492980, guid: 8bc043117f2c65341ab8b6e384da977f, type: 2}
-      propertyPath: bala
-      value: 
-      objectReference: {fileID: 153984, guid: 5820c96318c7cd248a38b40a64e2b394, type: 2}
-    - target: {fileID: 11492980, guid: 8bc043117f2c65341ab8b6e384da977f, type: 2}
-      propertyPath: camaraPrincipal
-      value: 
-      objectReference: {fileID: 748673132}
-    - target: {fileID: 11492980, guid: 8bc043117f2c65341ab8b6e384da977f, type: 2}
-      propertyPath: potencia
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 11492980, guid: 8bc043117f2c65341ab8b6e384da977f, type: 2}
-      propertyPath: velocidadDisparo
-      value: 0.1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 8bc043117f2c65341ab8b6e384da977f, type: 2}
-  m_IsPrefabParent: 0
+  m_PrefabInternal: {fileID: 1251161078}

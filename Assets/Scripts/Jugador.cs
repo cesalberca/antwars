@@ -13,21 +13,32 @@ public class Jugador : Personaje{
 
     //cosas a crear
     private GameObject armaSeleccionada;
-    //public List<ArmaBasica> almacenArmas = new List<ArmaBasica>();
+    private int indexSeleccionado = 0;
     
 
     // Use this for initialization
     void Start () {
-        elegirArmaPorIndex(0);
 	}
 	
 	// Update is called once per frame
 	void Update () {
         mover(new Vector2());
-        if (Input.GetKey(KeyCode.Q)){
-
+        elegirArma();
+        
+    }
+    void elegirArma()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            elegirArmaPorIndex(0);
+            aparecerArma();
         }
-	}
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            elegirArmaPorIndex(1);
+            aparecerArma();
+        }
+    }
 
     void elegirArmaPorIndex(int index)
     {
@@ -36,8 +47,17 @@ public class Jugador : Personaje{
 
     void aparecerArma()
     {
-        GameObject nuevaArma;
-        nuevaArma = Instantiate(armaSeleccionada, new Vector2(this.transform.position.x, this.transform.position.y), Quaternion.identity) as GameObject;
+        matarHijos(this.gameObject);
+        armaSeleccionada = Instantiate(armaSeleccionada, new Vector2(this.transform.position.x, this.transform.position.y), Quaternion.identity) as GameObject;
+        armaSeleccionada.transform.parent = gameObject.transform;
+    }
+
+    void matarHijos(GameObject padre)
+    {
+        for (int i = 0; i< padre.transform.childCount; i++)
+        {
+            Destroy(padre.transform.GetChild(i).gameObject);
+        }
     }
     
     /// <summary>

@@ -7,11 +7,12 @@ public class ArmaPistola : ArmaBasica {
 	// Use this for initialization
 	void Start () {
         puedeDisparar = true;
-	}
+        camaraPrincipal = GameObject.Find("Main Camera").GetComponent<Camera>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKey(KeyCode.E))
+        if (Input.GetKey(KeyCode.F))
         {
             disparar();
         }

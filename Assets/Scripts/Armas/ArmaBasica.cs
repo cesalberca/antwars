@@ -11,6 +11,11 @@ public class ArmaBasica : MonoBehaviour {
     public Camera camaraPrincipal;
     public GameObject bala;
 
+    void Start()
+    {
+        //Debug.Log("HOLA");
+        //camaraPrincipal = GameObject.Find("Main Camera").GetComponent<Camera>();
+    }
     /// <summary>
     /// cambiar para que sus hijos tengas distintos tipos de disparo
     /// </summary>
