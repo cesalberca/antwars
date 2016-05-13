@@ -12,7 +12,7 @@ public abstract class Personaje : MonoBehaviour {
     public LayerMask capa;
 
     private BoxCollider2D colisionador;
-    private Rigidbody2D cuerpo;
+    public Rigidbody2D cuerpo;
 
 	// Es protected y virtual para que se pueda sobreescribir por sus hijas.
 	protected virtual void Start () {
@@ -21,7 +21,7 @@ public abstract class Personaje : MonoBehaviour {
     }
 
     // Función que determina si el personaje se puede mover en esa dirección.
-    protected bool puedeMover(int x, int y, out RaycastHit2D choque)
+    protected bool puedeMover(float x, float y, out RaycastHit2D choque)
     {
         // Cogemos la posición del objeto
         Vector2 comienzo = transform.position;
@@ -40,17 +40,15 @@ public abstract class Personaje : MonoBehaviour {
             // moverse
             mover(destino);
             return true;
-        } else
-        {
-            return false;
         }
+        return false;
     }
 
     // Función que mueve al personaje.
     protected abstract void mover(Vector2 destino);
 
     // Función que intenta moverse en cierta dirección. Se llamará cada vez que el usuario presione una tecla y cada frame por las hormigas enemigas.
-    protected virtual void intentarMovimiento <T> (int x, int y)
+    protected virtual void intentarMovimiento <T> (float x, float y)
         where T : Component
     {
         RaycastHit2D choque;
