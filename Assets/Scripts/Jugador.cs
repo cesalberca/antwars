@@ -38,6 +38,11 @@ public class Jugador : Personaje{
             elegirArmaPorIndex(1);
             aparecerArma();
         }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            elegirArmaPorIndex(2);
+            aparecerArma();
+        }
     }
 
     void elegirArmaPorIndex(int index)
