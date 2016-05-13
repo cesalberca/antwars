@@ -38,7 +38,9 @@ public abstract class Personaje : MonoBehaviour {
         if (choque.transform == null)
         {
             // moverse
-            mover(destino);
+            //mover(destino);
+            Vector3 nuevaPosicion = Vector3.MoveTowards(cuerpo.position, destino, velocidad);
+            cuerpo.MovePosition(nuevaPosicion);
             return true;
         }
         return false;
