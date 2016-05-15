@@ -24,7 +24,7 @@ public class Jugador : Personaje{
 	void Update () {
         mover(new Vector2());
         elegirArma();
-        
+        resetImpulso();
     }
 
     #region INVENTARIO
@@ -127,11 +127,11 @@ public class Jugador : Personaje{
     #endregion
 
     #region LOGICA
-        /// <summary>
-        /// Devuelve el objeto debajo de la posicion del raton
-        /// </summary>
-        /// <returns>El objeto debajo de la posicion del raton</returns>
-        GameObject seleccionarGameObjectMouse()
+    /// <summary>
+    /// Devuelve el objeto debajo de la posicion del raton
+    /// </summary>
+    /// <returns>El objeto debajo de la posicion del raton</returns>
+    GameObject seleccionarGameObjectMouse()
         {
             RaycastHit2D hit = Physics2D.Raycast(new Vector2(camaraPrincipal.ScreenToWorldPoint(Input.mousePosition).x, camaraPrincipal.ScreenToWorldPoint(Input.mousePosition).y), Vector2.zero, 0f);
             if (hit)
