@@ -1,13 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ArmaBomba : ArmaBasica
+public class Explosivo : MonoBehaviour
 {
-
+    public int delayBomba;
+    public int radioBomba;
 	// Use this for initialization
 	void Start () {
-        puedeDisparar = true;
-
     }
 	
 	// Update is called once per frame
@@ -34,7 +33,7 @@ public class ArmaBomba : ArmaBasica
             //Instantiate(particulaBomba, bomba.transform.position, Quaternion.identity);
             for (int i = 0; i < hitColliders.Length; i++)
             {
-                if (!hitColliders[i].CompareTag("Player"))
+                if (!hitColliders[i].CompareTag("Jugador"))
                 {
                     Destroy(hitColliders[i].transform.gameObject);
                 }

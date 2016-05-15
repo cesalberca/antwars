@@ -14,12 +14,10 @@ public class Jugador : Personaje{
     //cosas a crear
     private GameObject armaSeleccionada;
     private int indexSeleccionado = 0;
-    private ArmaBomba ab;
 
 
     // Use this for initialization
     void Start () {
-        ab = armaSeleccionada.gameObject.GetComponent<ArmaBomba>();
 	}
 	
 	// Update is called once per frame
@@ -29,181 +27,193 @@ public class Jugador : Personaje{
         
     }
 
-    /// <summary>
-    /// elige un arma segun la tecla que pulses
-    /// </summary>
-    void elegirArma()
-    {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+    #region INVENTARIO
+        /// <summary>
+        /// elige un arma segun la tecla que pulses
+        /// </summary>
+        void elegirArma()
         {
-            elegirArmaPorIndex(0);
-            aparecerArma();
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            elegirArmaPorIndex(1);
-            aparecerArma();
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            elegirArmaPorIndex(2);
-            aparecerArma();
-        }
-    }
-
-    /// <summary>
-    /// selecciona un arma segun el index que le pases
-    /// </summary>
-    /// <param name="index">La posicion del almacenArmas del arma que se quiere equipar</param>
-    void elegirArmaPorIndex(int index)
-    {
-        armaSeleccionada = almacenArmas[index];
-    }
-
-    /// <summary>
-    /// hace aparecer el arma seleccionada
-    /// </summary>
-    void aparecerArma()
-    {
-        matarHijos(this.gameObject);
-        armaSeleccionada = Instantiate(armaSeleccionada, new Vector2(this.transform.position.x, this.transform.position.y), Quaternion.identity) as GameObject;
-        armaSeleccionada.transform.parent = gameObject.transform;
-    }
-
-    /// <summary>
-    /// mata a todos los hijos del objeto pasado por parametro
-    /// </summary>
-    /// <param name="padre">el objeto del que queremos matar todos los hijos</param>
-    void matarHijos(GameObject padre)
-    {
-        for (int i = 0; i< padre.transform.childCount; i++)
-        {
-            Destroy(padre.transform.GetChild(i).gameObject);
-        }
-    }
-    
-    /// <summary>
-    /// modo cutre para mover, deberiamos cambiarlo
-    /// </summary>
-    /// <param name="destino"></param>
-    protected override void mover(Vector2 destino)
-    {
-        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
-        {
-            Vector3 position = this.transform.position;
-            position.x -= velocidad;
-            transform.localRotation = Quaternion.Euler(0, 180, 0);
-            this.transform.position = position;
-        }
-        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
-        {
-            Vector3 position = this.transform.position;
-            position.x += velocidad;
-            transform.localRotation = Quaternion.Euler(0, 0, 0);
-            this.transform.position = position;
-        }
-        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
-        {
-            Vector3 position = this.transform.position;
-            position.y += velocidad;
-            this.transform.position = position;
-        }
-        if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
-        {
-            Vector3 position = this.transform.position;
-            position.y -= velocidad;
-            this.transform.position = position;
-        }
-    }
-
-    /// <summary>
-    /// Devuelve el objeto debajo de la posicion del raton
-    /// </summary>
-    /// <returns>El objeto debajo de la posicion del raton</returns>
-    GameObject seleccionarGameObjectMouse()
-    {
-        RaycastHit2D hit = Physics2D.Raycast(new Vector2(camaraPrincipal.ScreenToWorldPoint(Input.mousePosition).x, camaraPrincipal.ScreenToWorldPoint(Input.mousePosition).y), Vector2.zero, 0f);
-        if (hit)
-        {
-            return hit.transform.gameObject;
-        }
-        else return null;
-    }
-
-    /// <summary>
-    /// devuelve la distancia entre el personaje y el GameObject pasado como parametro
-    /// </summary>
-    /// <param name="jugador"></param>
-    /// <returns>La distancia entre el personaje y el GameObject</returns>
-    float getDistanciaMouseObject(GameObject objeto)
-    {
-        float distancia = Vector2.Distance(new Vector2(camaraPrincipal.ScreenToWorldPoint(Input.mousePosition).x, camaraPrincipal.ScreenToWorldPoint(Input.mousePosition).y), new Vector2(objeto.transform.position.x, objeto.transform.position.y));
-        return distancia;
-    }
-
-    /// <summary>
-    /// destruye el objeto seleccionado por seleccionarGameObjectMouse
-    /// </summary>
-    void controlarDestruccion()
-    {
-        if (getDistanciaMouseObject(this.gameObject) < distanciaInteraccion)
-        {
-            if (seleccionarGameObjectMouse() != null)
+            if (Input.GetKeyDown(KeyCode.Alpha1))
             {
-                if (!seleccionarGameObjectMouse().CompareTag("Player") && !seleccionarGameObjectMouse().CompareTag("Enemigo"))
+                elegirArmaPorIndex(0);
+                aparecerArma();
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                elegirArmaPorIndex(1);
+                aparecerArma();
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                elegirArmaPorIndex(2);
+                aparecerArma();
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha4))
+            {
+                elegirArmaPorIndex(3);
+                aparecerArma();
+                Explosivo nuevaBomba = armaSeleccionada.GetComponent<Explosivo>();
+                colocarBomba(nuevaBomba.delayBomba, nuevaBomba.radioBomba);
+
+            }
+        }
+
+        /// <summary>
+        /// selecciona un arma segun el index que le pases
+        /// </summary>
+        /// <param name="index">La posicion del almacenArmas del arma que se quiere equipar</param>
+        void elegirArmaPorIndex(int index)
+        {
+            armaSeleccionada = almacenArmas[index];
+        }
+
+        /// <summary>
+        /// hace aparecer el arma seleccionada
+        /// </summary>
+        void aparecerArma()
+        {
+            matarHijos(this.gameObject);
+            armaSeleccionada = Instantiate(armaSeleccionada, new Vector2(this.transform.position.x, this.transform.position.y), Quaternion.identity) as GameObject;
+            armaSeleccionada.transform.parent = gameObject.transform;
+        }
+
+        /// <summary>
+        /// mata a todos los hijos del objeto pasado por parametro
+        /// </summary>
+        /// <param name="padre">el objeto del que queremos matar todos los hijos</param>
+        void matarHijos(GameObject padre)
+        {
+            for (int i = 0; i < padre.transform.childCount; i++)
+            {
+                Destroy(padre.transform.GetChild(i).gameObject);
+            }
+        }
+    #endregion
+
+    #region MOVIMIENTO
+        /// <summary>
+        /// modo cutre para mover, deberiamos cambiarlo
+        /// </summary>
+        /// <param name="destino"></param>
+        protected override void mover(Vector2 destino)
+        {
+            if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+            {
+                Vector3 position = this.transform.position;
+                position.x -= velocidad;
+                transform.localRotation = Quaternion.Euler(0, 180, 0);
+                this.transform.position = position;
+            }
+            if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+            {
+                Vector3 position = this.transform.position;
+                position.x += velocidad;
+                transform.localRotation = Quaternion.Euler(0, 0, 0);
+                this.transform.position = position;
+            }
+            if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+            {
+                Vector3 position = this.transform.position;
+                position.y += velocidad;
+                this.transform.position = position;
+            }
+            if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
+            {
+                Vector3 position = this.transform.position;
+                position.y -= velocidad;
+                this.transform.position = position;
+            }
+        }
+    #endregion
+
+    #region LOGICA
+        /// <summary>
+        /// Devuelve el objeto debajo de la posicion del raton
+        /// </summary>
+        /// <returns>El objeto debajo de la posicion del raton</returns>
+        GameObject seleccionarGameObjectMouse()
+        {
+            RaycastHit2D hit = Physics2D.Raycast(new Vector2(camaraPrincipal.ScreenToWorldPoint(Input.mousePosition).x, camaraPrincipal.ScreenToWorldPoint(Input.mousePosition).y), Vector2.zero, 0f);
+            if (hit)
+            {
+                return hit.transform.gameObject;
+            }
+            else return null;
+        }
+
+        /// <summary>
+        /// devuelve la distancia entre el personaje y el GameObject pasado como parametro
+        /// </summary>
+        /// <param name="jugador"></param>
+        /// <returns>La distancia entre el personaje y el GameObject</returns>
+        float getDistanciaMouseObject(GameObject objeto)
+        {
+            float distancia = Vector2.Distance(new Vector2(camaraPrincipal.ScreenToWorldPoint(Input.mousePosition).x, camaraPrincipal.ScreenToWorldPoint(Input.mousePosition).y), new Vector2(objeto.transform.position.x, objeto.transform.position.y));
+            return distancia;
+        }
+
+        /// <summary>
+        /// quita el impulso acumulado del objeto
+        /// </summary>
+        void resetImpulso()
+        {
+            this.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+            this.GetComponent<Rigidbody2D>().angularVelocity = 0;
+        }
+    #endregion
+
+    #region FEATURES
+        /// <summary>
+        /// destruye el objeto seleccionado por seleccionarGameObjectMouse
+        /// </summary>
+        void controlarDestruccion()
+        {
+            if (getDistanciaMouseObject(this.gameObject) < distanciaInteraccion)
+            {
+                if (seleccionarGameObjectMouse() != null)
                 {
-                    Destroy(seleccionarGameObjectMouse());
+                    if (!seleccionarGameObjectMouse().CompareTag("Player") && !seleccionarGameObjectMouse().CompareTag("Enemigo"))
+                    {
+                        Destroy(seleccionarGameObjectMouse());
+                    }
                 }
             }
-        }
-        
-    }
 
-    /// <summary>
-    /// contruye un objeto en la posicion del raton, si no hay otro objeto en su posicion
-    /// </summary>
-    void controlarConstruccion(GameObject bloqueAConstruir)
-    {
-        if (getDistanciaMouseObject(this.gameObject) < distanciaInteraccion)
+        }
+
+        /// <summary>
+        /// contruye un objeto en la posicion del raton, si no hay otro objeto en su posicion
+        /// </summary>
+        /// <param name="bloqueAConstruir">el gameobject que se va a colocar</param>
+        /// <returns> el gameObject creado</returns>
+        GameObject controlarConstruccion(GameObject bloqueAConstruir)
         {
-            if (seleccionarGameObjectMouse() == null)
+            if (getDistanciaMouseObject(this.gameObject) < distanciaInteraccion)
             {
-                GameObject nuevoCubo;//cambiar el resource load por una referencia
-                nuevoCubo = Instantiate(bloqueAConstruir, new Vector3(Mathf.Round(camaraPrincipal.ScreenToWorldPoint(Input.mousePosition).x), Mathf.Round(camaraPrincipal.ScreenToWorldPoint(Input.mousePosition).y), 0), Quaternion.identity) as GameObject;
-                nuevoCubo.AddComponent<Muro>();
-                nuevoCubo.tag = "BloqueConstruido";
-                nuevoCubo.AddComponent<BoxCollider2D>();
+                if (seleccionarGameObjectMouse() == null)
+                {
+                    GameObject nuevoCubo;//cambiar el resource load por una referencia
+                    nuevoCubo = Instantiate(bloqueAConstruir, new Vector3(Mathf.Round(camaraPrincipal.ScreenToWorldPoint(Input.mousePosition).x), Mathf.Round(camaraPrincipal.ScreenToWorldPoint(Input.mousePosition).y), 0), Quaternion.identity) as GameObject;
+                    nuevoCubo.AddComponent<Muro>();
+                    //nuevoCubo.tag = "BloqueConstruido";
+                    nuevoCubo.AddComponent<BoxCollider2D>();
+                    return nuevoCubo;
+                }
+                else return null;
             }
-        }
-        
-    }
+            else return null;
 
-    /// <summary>
-    /// crea un objeto bomba y llama a detonarBomba()
-    /// </summary>
-    void colocarBomba(int delayBomba, int radioBomba)
-    {
-        if (getDistanciaMouseObject(this.gameObject) < distanciaInteraccion)
+        }
+
+        /// <summary>
+        /// crea un objeto bomba y llama a detonarBomba()
+        /// </summary>
+        void colocarBomba(int delayBomba, int radioBomba)
         {
-            if (seleccionarGameObjectMouse() == null)
-            {
-                GameObject nuevoCubo;//cambiar el resource load por una referencia
-                nuevoCubo = Instantiate(Resources.Load("Prefabs/spriteBomba"), new Vector3(Mathf.Round(camaraPrincipal.ScreenToWorldPoint(Input.mousePosition).x), Mathf.Round(camaraPrincipal.ScreenToWorldPoint(Input.mousePosition).y), 0), Quaternion.identity) as GameObject;
-                nuevoCubo.tag = "BloqueConstruido";
-                nuevoCubo.AddComponent<BoxCollider2D>();
-                StartCoroutine(ab.detonarBomba(nuevoCubo, delayBomba, radioBomba));
-            }
+            Explosivo nuevaBomba = armaSeleccionada.GetComponent<Explosivo>();
+            StartCoroutine(nuevaBomba.detonarBomba(controlarConstruccion(armaSeleccionada), delayBomba, radioBomba));
         }
-    }
-
-    /// <summary>
-    /// quita el impulso acumulado del objeto
-    /// </summary>
-    void resetImpulso()
-    {
-        this.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
-        this.GetComponent<Rigidbody2D>().angularVelocity = 0;
-    }
+    #endregion
 
     protected override void choqueConObjeto<T>(T componente)
     {
