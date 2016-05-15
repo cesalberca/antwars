@@ -55,6 +55,16 @@ public class ArmaBasica : MonoBehaviour {
     public void moverArma()
     {
         this.transform.position = new Vector2(jugador.transform.position.x, jugador.transform.position.y) + (getDireccionDisparo() / getDireccionDisparo().magnitude)/3;
+        rotarArma();
+    }
+
+    public void rotarArma()
+    {
+        Vector3 diff = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+        diff.Normalize();
+
+        float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
     }
 
     /// <summary>
