@@ -47,6 +47,7 @@ MonoBehaviour:
   velocidadDisparo: 0.01
   camaraPrincipal: {fileID: 0}
   bala: {fileID: 153984, guid: 5820c96318c7cd248a38b40a64e2b394, type: 2}
+  jugador: {fileID: 147208, guid: c978f126093797246a56686de074a757, type: 2}
 --- !u!212 &21229894
 SpriteRenderer:
   m_ObjectHideFlags: 1

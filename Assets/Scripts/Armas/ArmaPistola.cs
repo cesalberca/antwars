@@ -12,10 +12,12 @@ public class ArmaPistola : ArmaBasica {
 	
 	// Update is called once per frame
 	void Update () {
+        jugador = this.transform.parent.gameObject;
         if (Input.GetKey(KeyCode.F))
         {
             disparar();
         }
+        moverArma();
 	}
 
     void disparar()
@@ -33,6 +35,7 @@ public class ArmaPistola : ArmaBasica {
             nuevaBala.GetComponent<BoxCollider2D>().size = new Vector2(0.3f, 0.3f);
             nuevaBala.transform.localScale = new Vector3(1, 1, 1);
             StartCoroutine(calcularRatio(velocidadDisparo));
+            Destroy(nuevaBala, 10);
         }
     }
 
