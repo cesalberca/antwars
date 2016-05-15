@@ -9,15 +9,17 @@ public class Jugador : Personaje{
     public Camera camaraPrincipal;                          //la camara principal que se quiere que siga al personaje
     public int distanciaInteraccion = 5;                    //la distancia a la que se pueden interactuar
     private int almacenMateriales = 100;                    //la cantidad de materiales que tiene el jugador
-    public List<GameObject> almacenArmas;
+    public List<GameObject> almacenArmas;                   //la lista de armas que puede equipar
 
     //cosas a crear
     private GameObject armaSeleccionada;
     private int indexSeleccionado = 0;
-    
+    private ArmaBomba ab;
+
 
     // Use this for initialization
     void Start () {
+        ab = armaSeleccionada.gameObject.GetComponent<ArmaBomba>();
 	}
 	
 	// Update is called once per frame
@@ -26,6 +28,10 @@ public class Jugador : Personaje{
         elegirArma();
         
     }
+
+    /// <summary>
+    /// elige un arma segun la tecla que pulses
+    /// </summary>
     void elegirArma()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
@@ -45,11 +51,18 @@ public class Jugador : Personaje{
         }
     }
 
+    /// <summary>
+    /// selecciona un arma segun el index que le pases
+    /// </summary>
+    /// <param name="index">La posicion del almacenArmas del arma que se quiere equipar</param>
     void elegirArmaPorIndex(int index)
     {
         armaSeleccionada = almacenArmas[index];
     }
 
+    /// <summary>
+    /// hace aparecer el arma seleccionada
+    /// </summary>
     void aparecerArma()
     {
         matarHijos(this.gameObject);
@@ -57,6 +70,10 @@ public class Jugador : Personaje{
         armaSeleccionada.transform.parent = gameObject.transform;
     }
 
+    /// <summary>
+    /// mata a todos los hijos del objeto pasado por parametro
+    /// </summary>
+    /// <param name="padre">el objeto del que queremos matar todos los hijos</param>
     void matarHijos(GameObject padre)
     {
         for (int i = 0; i< padre.transform.childCount; i++)
@@ -174,35 +191,14 @@ public class Jugador : Personaje{
                 nuevoCubo = Instantiate(Resources.Load("Prefabs/spriteBomba"), new Vector3(Mathf.Round(camaraPrincipal.ScreenToWorldPoint(Input.mousePosition).x), Mathf.Round(camaraPrincipal.ScreenToWorldPoint(Input.mousePosition).y), 0), Quaternion.identity) as GameObject;
                 nuevoCubo.tag = "BloqueConstruido";
                 nuevoCubo.AddComponent<BoxCollider2D>();
-                StartCoroutine(detonarBomba(nuevoCubo, delayBomba, radioBomba));
+                StartCoroutine(ab.detonarBomba(nuevoCubo, delayBomba, radioBomba));
             }
-            
         }
     }
 
     /// <summary>
-    /// Destruye todos los objetos en el area pasada por parametro
+    /// quita el impulso acumulado del objeto
     /// </summary>
-    /// <param name="bomba">El GameObject bomba creado anteriormente</param>
-    /// <param name="delayTime">El tiempo de delay entre la llamada de la funcion y la detonacion de la bomba</param>
-    /// <returns></returns>
-    IEnumerator detonarBomba(GameObject bomba, float delayTime, int radioBomba)
-    {
-        yield return new WaitForSeconds(delayTime);
-        if (bomba != null)
-        {
-            Collider2D[] hitColliders = Physics2D.OverlapCircleAll(bomba.transform.position, radioBomba);
-            //Instantiate(particulaBomba, bomba.transform.position, Quaternion.identity);
-            for (int i = 0; i < hitColliders.Length; i++)
-            {
-                if (!hitColliders[i].CompareTag("Player"))
-                {
-                    Destroy(hitColliders[i].transform.gameObject);
-                }
-            }
-        }
-    }
-
     void resetImpulso()
     {
         this.GetComponent<Rigidbody2D>().velocity = Vector3.zero;

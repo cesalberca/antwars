@@ -3,7 +3,6 @@ using System.Collections;
 
 public class ArmaPistola : ArmaBasica {
 
-    private bool puedeDisparar;
 	// Use this for initialization
 	void Start () {
         puedeDisparar = true;
@@ -20,6 +19,9 @@ public class ArmaPistola : ArmaBasica {
         moverArma();
 	}
 
+    /// <summary>
+    /// dispara el proyectil de este arma cada vez que el calcularRatio, la tasa de fuego, le deja
+    /// </summary>
     void disparar()
     {
         if (puedeDisparar)
@@ -39,9 +41,5 @@ public class ArmaPistola : ArmaBasica {
         }
     }
 
-    IEnumerator calcularRatio(float delayTime)
-    {
-        yield return new WaitForSeconds(delayTime);
-        puedeDisparar = true;
-    }
+
 }
