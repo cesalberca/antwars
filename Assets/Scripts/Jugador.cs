@@ -56,7 +56,12 @@ public class Jugador : Personaje{
                 colocarBomba(nuevaBomba.delayBomba, nuevaBomba.radioBomba);
 
             }
-        }
+            if (Input.GetKeyDown(KeyCode.Alpha5))
+            {
+                elegirArmaPorIndex(4);
+                aparecerArma();
+            }
+    }
 
         /// <summary>
         /// selecciona un arma segun el index que le pases
