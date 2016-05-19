@@ -28,7 +28,7 @@ public class ArmaPistola : ArmaBasica {
         {
             puedeDisparar = false;
             GameObject nuevaBala;
-            nuevaBala = Instantiate(bala, new Vector2(this.transform.position.x, this.transform.position.y) + (getDireccionDisparo() / getDireccionDisparo().magnitude) / 2, Quaternion.identity) as GameObject;
+            nuevaBala = Instantiate(bala, new Vector2(this.transform.position.x, this.transform.position.y) + (getDireccionDisparo() / getDireccionDisparo().magnitude) / 10, Quaternion.identity) as GameObject;
             nuevaBala.AddComponent<BoxCollider2D>();
             nuevaBala.AddComponent<Rigidbody2D>();
             nuevaBala.GetComponent<Rigidbody2D>().gravityScale = 0;

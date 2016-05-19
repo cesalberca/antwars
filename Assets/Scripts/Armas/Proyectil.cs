@@ -18,7 +18,10 @@ public class Proyectil : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D coll)
     {
-        Destroy(this.transform.gameObject);
-        Destroy(coll.transform.gameObject);
+        if (!coll.transform.CompareTag("Jugador"))
+        {
+            Destroy(this.transform.gameObject);
+            Destroy(coll.transform.gameObject);
+        }
     }
 }
