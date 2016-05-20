@@ -45,7 +45,7 @@ namespace Completed
         {
             for (int i = 0; i < enemigos.Count; i++)
             {
-                enemigos[i].moverEnemigo();
+                //enemigos[i].moverEnemigo();
                 yield return new WaitForSeconds(enemigos[i].velocidad);
             }
         }

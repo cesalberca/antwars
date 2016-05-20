@@ -5,10 +5,10 @@ using Random = UnityEngine.Random;
 
 public class Enemigo : Personaje {
 
-    // Daño que hace el enemigo sobre el personaje.
-    public int danoAtaque = 3;
+    
+    public int danoAtaque = 3; // Daño que hace el enemigo sobre el personaje.
 
-    private int vida;
+    private int vida; //Vida que tiene el enemigo.
 
 
     // Posición del jugador.
@@ -17,20 +17,19 @@ public class Enemigo : Personaje {
 	// Sobreescribimos la clase de start de la superclase.
 	protected override void Start () {
         //objetivo = GameObject.FindGameObjectsWithTag("Jugador").transform;
+        vida = Random.Range(100, 150);
         base.Start();
 	}
 	
     // Función que mueve el enemigo hacia la base del jugador o en caso que se encuentre en rango, mueve el enemigo hacia el jugador.
-	public void moverEnemigo()
-    {
-        float x = 2;
-        float y = 2;
+	//public void moverEnemigo(Base baseJugador)
+ //   {
+ //       float x = baseJugador.PosicionX;
+ //       float y = baseJugador.PosicionY;
 
-        intentarMovimiento<Jugador>(x, y);
-
-        // Pasamos como componente a Jugador, que es al que posiblemente nos encontremos.
-        //intentarMovimiento<Muro>(x, y);
-    }
+ //       // Pasamos como componente a Jugador, que es al que posiblemente nos encontremos.
+ //       //intentarMovimiento<Muro>(x, y);
+ //   }
 
     protected override void choqueConObjeto<T>(T componente)
     {
@@ -49,6 +48,6 @@ public class Enemigo : Personaje {
 
     protected override void mover(Vector2 destino)
     {
-        this.transform.LookAt(destino);
+        throw new NotImplementedException();
     }
 }

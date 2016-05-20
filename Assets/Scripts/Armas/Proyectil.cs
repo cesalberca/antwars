@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Proyectil : MonoBehaviour
 {
-
+    public int dano = 1;
     // Use this for initialization
     void Start()
     {
@@ -18,16 +18,7 @@ public class Proyectil : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D coll)
     {
-        coll.transform.gameObject.GetComponent<Muro>().vidaMuro--;
-        if (coll.transform.gameObject.GetComponent<Muro>().vidaMuro <= 0)
-        {
-            Destroy(coll.transform.gameObject);
-        }
-        Destroy(this.transform.gameObject);
-        //if (!coll.transform.CompareTag("Jugador"))
-        //{
-        //    Destroy(this.transform.gameObject);
-        //    Destroy(coll.transform.gameObject);
-        //}
+        coll.transform.gameObject.GetComponent<Muro>().bajarVida(dano);
+        Destroy(this.gameObject);
     }
 }
