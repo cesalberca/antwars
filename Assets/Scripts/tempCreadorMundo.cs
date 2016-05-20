@@ -41,6 +41,8 @@ public class tempCreadorMundo : MonoBehaviour
                 {
                     arrayTiles[i, j] = Instantiate(muro, new Vector3(j, -i, 0), Quaternion.identity) as GameObject;//cambiar el resource load por una referencia
                     arrayTiles[i, j].AddComponent<BoxCollider2D>();
+                    arrayTiles[i, j].AddComponent<Muro>();
+                    arrayTiles[i, j].GetComponent<Muro>().vidaMuro = 5;
                     //arrayTiles[i, j].tag = "Default";
                 }
                 else { }

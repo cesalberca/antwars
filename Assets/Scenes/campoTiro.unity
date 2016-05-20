@@ -111,8 +111,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   muro: {fileID: 147248, guid: 8d2c01aeb303ef745810e93d45d6494d, type: 2}
   fondo: {fileID: 107670, guid: e49f40713126c4245826d589bb2a9014, type: 2}
-  tilesFila: 10
-  tilesColumna: 10
+  tilesFila: 100
+  tilesColumna: 100
   porcientoBloque: 75
 --- !u!1001 &865854557
 Prefab:
@@ -151,7 +151,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 420278, guid: c978f126093797246a56686de074a757, type: 2}
       propertyPath: m_RootOrder
-      value: 16
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11415624, guid: c978f126093797246a56686de074a757, type: 2}
       propertyPath: camaraPrincipal
@@ -209,7 +209,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 2065816, guid: 15d2b606d530bac4eb5ca0f38057c4fe, type: 2}
       propertyPath: orthographic size
-      value: 1.7062312
+      value: 2.9294899
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 15d2b606d530bac4eb5ca0f38057c4fe, type: 2}

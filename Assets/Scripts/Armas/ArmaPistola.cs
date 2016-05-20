@@ -35,7 +35,7 @@ public class ArmaPistola : ArmaBasica {
             nuevaBala.GetComponent<Rigidbody2D>().AddRelativeForce((getDireccionDisparo() / getDireccionDisparo().magnitude) * potencia);
             //nuevaBala.tag = "BloqueConstruido";
             nuevaBala.GetComponent<BoxCollider2D>().size = new Vector2(0.3f, 0.3f);
-            nuevaBala.transform.localScale = new Vector3(1, 1, 1);
+            //nuevaBala.transform.localScale = new Vector3(1, 1, 1);
             StartCoroutine(calcularRatio(velocidadDisparo));
             Destroy(nuevaBala, 10);
         }

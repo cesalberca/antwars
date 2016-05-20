@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 171164}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.6, y: 1.6, z: 1.6}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -42,9 +42,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 1
   dano: 10
-  potencia: 25
+  potencia: 500
   amplitud: 1
-  velocidadDisparo: 0.4
+  velocidadDisparo: 0.2
   camaraPrincipal: {fileID: 0}
   bala: {fileID: 153984, guid: 5820c96318c7cd248a38b40a64e2b394, type: 2}
   jugador: {fileID: 147208, guid: c978f126093797246a56686de074a757, type: 2}
@@ -88,11 +88,23 @@ Prefab:
     m_Modifications:
     - target: {fileID: 0}
       propertyPath: potencia
-      value: 200
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: velocidadDisparo
-      value: 0.4
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_LocalScale.x
+      value: 1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_LocalScale.y
+      value: 1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_LocalScale.z
+      value: 1.6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

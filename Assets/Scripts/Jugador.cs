@@ -25,6 +25,8 @@ public class Jugador : Personaje{
         mover(new Vector2());
         elegirArma();
         resetImpulso();
+        controlarMirada();
+        picar();
     }
 
     #region INVENTARIO
@@ -106,14 +108,14 @@ public class Jugador : Personaje{
             {
                 Vector3 position = this.transform.position;
                 position.x -= velocidad;
-                transform.localRotation = Quaternion.Euler(0, 180, 0);
+                //transform.localRotation = Quaternion.Euler(0, 180, 0);
                 this.transform.position = position;
             }
             if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
             {
                 Vector3 position = this.transform.position;
                 position.x += velocidad;
-                transform.localRotation = Quaternion.Euler(0, 0, 0);
+               // transform.localRotation = Quaternion.Euler(0, 0, 0);
                 this.transform.position = position;
             }
             if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
@@ -129,6 +131,17 @@ public class Jugador : Personaje{
                 this.transform.position = position;
             }
         }
+
+    public void controlarMirada()
+    {
+        if(getMousePosition().x > this.transform.position.x)
+        {
+            transform.localRotation = Quaternion.Euler(0, 0, 0);
+        } else
+        {
+            transform.localRotation = Quaternion.Euler(0, 180, 0);
+        }
+    }
     #endregion
 
     #region LOGICA
@@ -158,6 +171,16 @@ public class Jugador : Personaje{
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <returns>la posicion del raton en el mundo</returns>
+        private Vector3 getMousePosition()
+        {
+            Vector3 mousePos = new Vector2(camaraPrincipal.ScreenToWorldPoint(Input.mousePosition).x, camaraPrincipal.ScreenToWorldPoint(Input.mousePosition).y);
+            return mousePos;
+        }
+
+        /// <summary>
         /// quita el impulso acumulado del objeto
         /// </summary>
         void resetImpulso()
@@ -168,56 +191,69 @@ public class Jugador : Personaje{
     #endregion
 
     #region FEATURES
-        /// <summary>
-        /// destruye el objeto seleccionado por seleccionarGameObjectMouse
-        /// </summary>
-        void controlarDestruccion()
+
+    void picar()
+    {
+        if (Input.GetMouseButtonDown(0))
         {
-            if (getDistanciaMouseObject(this.gameObject) < distanciaInteraccion)
+            controlarDestruccion();
+        }
+    }
+
+    /// <summary>
+    /// destruye el objeto seleccionado por seleccionarGameObjectMouse
+    /// </summary>
+    void controlarDestruccion()
+    {
+        if (getDistanciaMouseObject(this.gameObject) < distanciaInteraccion)
+        {
+            if (seleccionarGameObjectMouse() != null)
             {
-                if (seleccionarGameObjectMouse() != null)
+            //if (!seleccionarGameObjectMouse().CompareTag("Jugador") && !seleccionarGameObjectMouse().CompareTag("Enemigo"))
+            if (!seleccionarGameObjectMouse().CompareTag("Jugador"))
                 {
-                    if (!seleccionarGameObjectMouse().CompareTag("Player") && !seleccionarGameObjectMouse().CompareTag("Enemigo"))
+                    seleccionarGameObjectMouse().GetComponent<Muro>().vidaMuro --;
+                    if(seleccionarGameObjectMouse().GetComponent<Muro>().vidaMuro <= 0)
                     {
                         Destroy(seleccionarGameObjectMouse());
                     }
                 }
             }
-
         }
+    }
 
-        /// <summary>
-        /// contruye un objeto en la posicion del raton, si no hay otro objeto en su posicion
-        /// </summary>
-        /// <param name="bloqueAConstruir">el gameobject que se va a colocar</param>
-        /// <returns> el gameObject creado</returns>
-        GameObject controlarConstruccion(GameObject bloqueAConstruir)
+    /// <summary>
+    /// contruye un objeto en la posicion del raton, si no hay otro objeto en su posicion
+    /// </summary>
+    /// <param name="bloqueAConstruir">el gameobject que se va a colocar</param>
+    /// <returns> el gameObject creado</returns>
+    GameObject controlarConstruccion(GameObject bloqueAConstruir)
+    {
+        if (getDistanciaMouseObject(this.gameObject) < distanciaInteraccion)
         {
-            if (getDistanciaMouseObject(this.gameObject) < distanciaInteraccion)
+            if (seleccionarGameObjectMouse() == null)
             {
-                if (seleccionarGameObjectMouse() == null)
-                {
-                    GameObject nuevoCubo;//cambiar el resource load por una referencia
-                    nuevoCubo = Instantiate(bloqueAConstruir, new Vector3(Mathf.Round(camaraPrincipal.ScreenToWorldPoint(Input.mousePosition).x), Mathf.Round(camaraPrincipal.ScreenToWorldPoint(Input.mousePosition).y), 0), Quaternion.identity) as GameObject;
-                    nuevoCubo.AddComponent<Muro>();
-                    //nuevoCubo.tag = "BloqueConstruido";
-                    nuevoCubo.AddComponent<BoxCollider2D>();
-                    return nuevoCubo;
-                }
-                else return null;
+                GameObject nuevoCubo;//cambiar el resource load por una referencia
+                nuevoCubo = Instantiate(bloqueAConstruir, new Vector3(Mathf.Round(camaraPrincipal.ScreenToWorldPoint(Input.mousePosition).x), Mathf.Round(camaraPrincipal.ScreenToWorldPoint(Input.mousePosition).y), 0), Quaternion.identity) as GameObject;
+                nuevoCubo.AddComponent<Muro>();
+                //nuevoCubo.tag = "BloqueConstruido";
+                nuevoCubo.AddComponent<BoxCollider2D>();
+                return nuevoCubo;
             }
             else return null;
-
         }
+        else return null;
 
-        /// <summary>
-        /// crea un objeto bomba y llama a detonarBomba()
-        /// </summary>
-        void colocarBomba(int delayBomba, int radioBomba)
-        {
-            Explosivo nuevaBomba = armaSeleccionada.GetComponent<Explosivo>();
-            StartCoroutine(nuevaBomba.detonarBomba(controlarConstruccion(armaSeleccionada), delayBomba, radioBomba));
-        }
+    }
+
+    /// <summary>
+    /// crea un objeto bomba y llama a detonarBomba()
+    /// </summary>
+    void colocarBomba(int delayBomba, int radioBomba)
+    {
+        Explosivo nuevaBomba = armaSeleccionada.GetComponent<Explosivo>();
+        StartCoroutine(nuevaBomba.detonarBomba(controlarConstruccion(armaSeleccionada), delayBomba, radioBomba));
+    }
     #endregion
 
     protected override void choqueConObjeto<T>(T componente)

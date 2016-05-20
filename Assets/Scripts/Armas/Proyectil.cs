@@ -18,10 +18,16 @@ public class Proyectil : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D coll)
     {
-        if (!coll.transform.CompareTag("Jugador"))
+        coll.transform.gameObject.GetComponent<Muro>().vidaMuro--;
+        if (coll.transform.gameObject.GetComponent<Muro>().vidaMuro <= 0)
         {
-            Destroy(this.transform.gameObject);
             Destroy(coll.transform.gameObject);
         }
+        Destroy(this.transform.gameObject);
+        //if (!coll.transform.CompareTag("Jugador"))
+        //{
+        //    Destroy(this.transform.gameObject);
+        //    Destroy(coll.transform.gameObject);
+        //}
     }
 }
