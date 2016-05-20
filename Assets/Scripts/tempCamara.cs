@@ -6,11 +6,13 @@ public class tempCamara : MonoBehaviour {
     public float dampTime = 0.15f;                          //El tiempo que tarda la camara en reaccionar al movimiento del personaje
     private Vector3 velocidad = Vector3.zero;               //La velocidad de seguimiento
     public Transform objetivo;                              //La posicion del objeto que se quiere seguir
+    public bool ratonEstaVisible;
 
     // Use this for initialization
     void Start () {
-	
-	}
+        //Screen.lockCursor = true;
+        Cursor.visible = ratonEstaVisible;
+    }
 	
 	// Update is called once per frame
 	void Update () {
