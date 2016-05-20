@@ -10,6 +10,7 @@ public class Jugador : Personaje{
     public int distanciaInteraccion = 5;                    //la distancia a la que se pueden interactuar
     private int almacenMateriales = 100;                    //la cantidad de materiales que tiene el jugador
     public List<GameObject> almacenArmas;                   //la lista de armas que puede equipar
+    public List<GameObject> almacenMuros;                   //la lista de todos los tipos de muros que puede colocar
 
     //cosas a crear
     private GameObject armaSeleccionada;
@@ -27,9 +28,12 @@ public class Jugador : Personaje{
         resetImpulso();
         controlarMirada();
         picar();
+        construir();
     }
 
     #region INVENTARIO
+
+        
         /// <summary>
         /// elige un arma segun la tecla que pulses
         /// </summary>
@@ -197,6 +201,14 @@ public class Jugador : Personaje{
         if (Input.GetMouseButtonDown(0))
         {
             controlarDestruccion();
+        }
+    }
+
+    void construir()
+    {
+        if (Input.GetMouseButtonDown(1))
+        {
+            controlarConstruccion(almacenMuros[0]);
         }
     }
 

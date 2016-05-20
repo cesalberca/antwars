@@ -87,6 +87,8 @@ MonoBehaviour:
   - {fileID: 171164, guid: 02bb39ea9f105124eb5d9c4a7fd8e098, type: 2}
   - {fileID: 118908, guid: a46b01088618a8148b7e28c5c99883ec, type: 2}
   - {fileID: 150616, guid: e1daa1707f8302443bc4de44bffeff09, type: 2}
+  almacenMuros:
+  - {fileID: 161190, guid: e0b589c1e8b680e4a9d8e0d4d9e534f3, type: 2}
 --- !u!212 &21254678
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -129,6 +131,10 @@ Prefab:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 0}
+      propertyPath: almacenMuros.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
       propertyPath: velocidad
       value: 0.05
       objectReference: {fileID: 0}
@@ -160,6 +166,10 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1.6
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: almacenMuros.Array.data[0]
+      value: 
+      objectReference: {fileID: 161190, guid: e0b589c1e8b680e4a9d8e0d4d9e534f3, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 147208}
