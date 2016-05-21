@@ -1,26 +1,31 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ArmaPistola : ArmaBasica {
+public class ArmaEscopeta : ArmaBasica
+{
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
         puedeDisparar = true;
         camaraPrincipal = GameObject.Find("Main Camera").GetComponent<Camera>();
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update()
+    {
         jugador = this.transform.parent.gameObject;
         if (Input.GetKey(KeyCode.F))
         {
             if (puedeDisparar)
             {
-                disparar((getDireccionDisparo() / getDireccionDisparo().magnitude) * potencia);
+                disparar((new Vector2(getDireccionDisparo().x - this.amplitud, getDireccionDisparo().y - this.amplitud) / getDireccionDisparo().magnitude) * potencia);
+                disparar((new Vector2(getDireccionDisparo().x + 0, getDireccionDisparo().y + 0) / getDireccionDisparo().magnitude) * potencia);
+                disparar((new Vector2(getDireccionDisparo().x + this.amplitud, getDireccionDisparo().y + this.amplitud) / getDireccionDisparo().magnitude) * potencia);
             }
         }
         moverArma();
-	}
+    }
 
     /// <summary>
     /// dispara el proyectil de este arma cada vez que el calcularRatio, la tasa de fuego, le deja

@@ -24,81 +24,104 @@ public class Jugador : Personaje{
 	// Update is called once per frame
 	void Update () {
         mover(new Vector2());
+
         elegirArma();
+        cambiarArma();
+
         resetImpulso();
         controlarMirada();
+
         picar();
         construir();
     }
 
     #region INVENTARIO
 
-        
-        /// <summary>
-        /// elige un arma segun la tecla que pulses
-        /// </summary>
-        void elegirArma()
+    void cambiarArma()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
         {
-            if (Input.GetKeyDown(KeyCode.Alpha1))
+            if (indexSeleccionado > 0)
             {
-                elegirArmaPorIndex(0);
+                elegirArmaPorIndex(indexSeleccionado - 1);
                 aparecerArma();
             }
-            if (Input.GetKeyDown(KeyCode.Alpha2))
+        } else if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (indexSeleccionado < almacenArmas.Count - 1)
             {
-                elegirArmaPorIndex(1);
+                elegirArmaPorIndex(indexSeleccionado + 1);
                 aparecerArma();
             }
-            if (Input.GetKeyDown(KeyCode.Alpha3))
-            {
-                elegirArmaPorIndex(2);
-                aparecerArma();
-            }
-            if (Input.GetKeyDown(KeyCode.Alpha4))
-            {
-                elegirArmaPorIndex(3);
-                aparecerArma();
-                Explosivo nuevaBomba = armaSeleccionada.GetComponent<Explosivo>();
-                colocarBomba(nuevaBomba.delayBomba, nuevaBomba.radioBomba);
-
-            }
-            if (Input.GetKeyDown(KeyCode.Alpha5))
-            {
-                elegirArmaPorIndex(4);
-                aparecerArma();
-            }
+        }
     }
 
-        /// <summary>
-        /// selecciona un arma segun el index que le pases
-        /// </summary>
-        /// <param name="index">La posicion del almacenArmas del arma que se quiere equipar</param>
-        void elegirArmaPorIndex(int index)
+    /// <summary>
+    /// elige un arma segun la tecla que pulses
+    /// </summary>
+    void elegirArma()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            armaSeleccionada = almacenArmas[index];
+            elegirArmaPorIndex(0);
+            aparecerArma();
         }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            elegirArmaPorIndex(1);
+            aparecerArma();
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            elegirArmaPorIndex(2);
+            aparecerArma();
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            elegirArmaPorIndex(3);
+            aparecerArma();
+            Explosivo nuevaBomba = armaSeleccionada.GetComponent<Explosivo>();
+            colocarBomba(nuevaBomba.delayBomba, nuevaBomba.radioBomba);
 
-        /// <summary>
-        /// hace aparecer el arma seleccionada
-        /// </summary>
-        void aparecerArma()
-        {
-            matarHijos(this.gameObject);
-            armaSeleccionada = Instantiate(armaSeleccionada, new Vector2(this.transform.position.x, this.transform.position.y), Quaternion.identity) as GameObject;
-            armaSeleccionada.transform.parent = gameObject.transform;
         }
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            elegirArmaPorIndex(4);
+            aparecerArma();
+        }
+    }
 
-        /// <summary>
-        /// mata a todos los hijos del objeto pasado por parametro
-        /// </summary>
-        /// <param name="padre">el objeto del que queremos matar todos los hijos</param>
-        void matarHijos(GameObject padre)
+    /// <summary>
+    /// selecciona un arma segun el index que le pases
+    /// </summary>
+    /// <param name="index">La posicion del almacenArmas del arma que se quiere equipar</param>
+    void elegirArmaPorIndex(int index)
+    {
+        armaSeleccionada = almacenArmas[index];
+        indexSeleccionado = index;
+    }
+
+    /// <summary>
+    /// hace aparecer el arma seleccionada
+    /// </summary>
+    void aparecerArma()
+    {
+        matarHijos(this.gameObject);
+        armaSeleccionada = Instantiate(armaSeleccionada, new Vector2(this.transform.position.x, this.transform.position.y), Quaternion.identity) as GameObject;
+        armaSeleccionada.transform.parent = gameObject.transform;
+    }
+
+    /// <summary>
+    /// mata a todos los hijos del objeto pasado por parametro
+    /// </summary>
+    /// <param name="padre">el objeto del que queremos matar todos los hijos</param>
+    void matarHijos(GameObject padre)
+    {
+        for (int i = 0; i < padre.transform.childCount; i++)
         {
-            for (int i = 0; i < padre.transform.childCount; i++)
-            {
-                Destroy(padre.transform.GetChild(i).gameObject);
-            }
+            Destroy(padre.transform.GetChild(i).gameObject);
         }
+    }
     #endregion
 
     #region MOVIMIENTO

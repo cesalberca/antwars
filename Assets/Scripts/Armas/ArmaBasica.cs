@@ -3,8 +3,8 @@ using System.Collections;
 
 public class ArmaBasica : MonoBehaviour {
 
-    public int id;
-    public int dano;
+    //public int id;
+    //public int dano;
     public int potencia;
     public int amplitud;
     public float velocidadDisparo;
