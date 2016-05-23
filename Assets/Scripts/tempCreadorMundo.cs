@@ -31,22 +31,23 @@ public class tempCreadorMundo : MonoBehaviour
         arrayTiles = new GameObject[tilesFila, tilesColumna];
 
         int elegidor;
+        Muro muroACrear;
 
-        
+
 
         for (int i = 0; i < tilesFila; i++)
         {
             for (int j = 0; j < tilesColumna; j++)
             {
-                Muro muroACrear = new Muro(j, i);
-                if (arrayTiles[i, (j - 1)].GetComponent<Muro>() == true)
-                {
+                muroACrear = new Muro(j, i);
+                //if (arrayTiles[i, (j - 1)].GetComponent<Muro>() == true)
+                //{
                     elegidor = Random.Range(0, 100);
-                }
-                else
-                {
-                    elegidor = Random.Range(0, 80);
-                }
+                //}
+                //else
+                //{
+                //    elegidor = Random.Range(0, 80);
+                //}
 
                 if (elegidor < porcientoBloque)
                 {
