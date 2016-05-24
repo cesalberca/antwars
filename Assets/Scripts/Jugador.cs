@@ -39,14 +39,14 @@ public class Jugador : Personaje{
 
     void cambiarArma()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetAxis("Mouse ScrollWheel") > 0)
         {
             if (indexSeleccionado > 0)
             {
                 elegirArmaPorIndex(indexSeleccionado - 1);
                 aparecerArma();
             }
-        } else if (Input.GetKeyDown(KeyCode.E))
+        } else if (Input.GetAxis("Mouse ScrollWheel") < 0)
         {
             if (indexSeleccionado < almacenArmas.Count - 1)
             {
@@ -87,6 +87,11 @@ public class Jugador : Personaje{
         if (Input.GetKeyDown(KeyCode.Alpha5))
         {
             elegirArmaPorIndex(4);
+            aparecerArma();
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha6))
+        {
+            elegirArmaPorIndex(5);
             aparecerArma();
         }
     }

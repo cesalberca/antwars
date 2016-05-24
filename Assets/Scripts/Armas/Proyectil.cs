@@ -18,7 +18,10 @@ public class Proyectil : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D coll)
     {
-        coll.transform.gameObject.GetComponent<Muro>().bajarVida(dano);
-        Destroy(this.gameObject);
+        if (coll.transform.gameObject.GetComponent<Muro>())
+        {
+            coll.transform.gameObject.GetComponent<Muro>().bajarVida(dano);
+            Destroy(this.transform.gameObject);
+        }
     }
 }
