@@ -8,9 +8,10 @@ public class Jugador : Personaje{
     //cosas a pasar
     public Camera camaraPrincipal;                          //la camara principal que se quiere que siga al personaje
     public int distanciaInteraccion = 5;                    //la distancia a la que se pueden interactuar
-    private int almacenMateriales = 100;                    //la cantidad de materiales que tiene el jugador
+    public int almacenMateriales = 100;                    //la cantidad de materiales que tiene el jugador
     public List<GameObject> almacenArmas;                   //la lista de armas que puede equipar
     public List<GameObject> almacenMuros;                   //la lista de todos los tipos de muros que puede colocar
+    public GameObject HUD;
 
     //cosas a crear
     private GameObject armaSeleccionada;
@@ -33,6 +34,8 @@ public class Jugador : Personaje{
 
         picar();
         construir();
+
+        controlarBombas();
     }
 
     #region INVENTARIO
@@ -56,6 +59,13 @@ public class Jugador : Personaje{
         }
     }
 
+    void disparar()
+    {
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            HUD.GetComponent<GestorHUD>().refrescar();
+        }
+    }
     /// <summary>
     /// elige un arma segun la tecla que pulses
     /// </summary>
@@ -80,9 +90,6 @@ public class Jugador : Personaje{
         {
             elegirArmaPorIndex(3);
             aparecerArma();
-            Explosivo nuevaBomba = armaSeleccionada.GetComponent<Explosivo>();
-            colocarBomba(nuevaBomba.delayBomba, nuevaBomba.radioBomba);
-
         }
         if (Input.GetKeyDown(KeyCode.Alpha5))
         {
@@ -284,6 +291,20 @@ public class Jugador : Personaje{
         }
         else return null;
 
+    }
+
+    void controlarBombas()
+    {
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            Debug.Log("HOLA1");
+            Debug.Log(indexSeleccionado);
+            if (armaSeleccionada.GetComponent<Explosivo>())
+            {
+                Debug.Log("HOLA");
+                colocarBomba(armaSeleccionada.GetComponent<Explosivo>().delayBomba, armaSeleccionada.GetComponent<Explosivo>().radioBomba);
+            }
+        }
     }
 
     /// <summary>

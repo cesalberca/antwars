@@ -24,9 +24,9 @@ public class ArmaBasica : MonoBehaviour {
     /// <summary>
     /// cambiar para que sus hijos tengas distintos tipos de disparo
     /// </summary>
-    void disparar()
+    public void disparar()
     {
-        
+
     }
 
     /// <summary>

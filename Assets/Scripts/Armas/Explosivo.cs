@@ -5,6 +5,7 @@ public class Explosivo : MonoBehaviour
 {
     public int delayBomba;
     public int radioBomba;
+    public int danoBomba;
 	// Use this for initialization
 	void Start () {
     }
@@ -15,7 +16,8 @@ public class Explosivo : MonoBehaviour
 	}
 
     void disparar() {
-
+        //Explosivo nuevaBomba = this.GetComponent<Explosivo>();
+        //colocarBomba(nuevaBomba.delayBomba, nuevaBomba.radioBomba);
     }
 
     /// <summary>
@@ -35,7 +37,11 @@ public class Explosivo : MonoBehaviour
             {
                 if (!hitColliders[i].CompareTag("Jugador"))
                 {
-                    Destroy(hitColliders[i].transform.gameObject);
+                    if (hitColliders[i].GetComponent<Muro>())
+                    {
+                        hitColliders[i].GetComponent<Muro>().bajarVida(danoBomba);
+                    }
+                    //Destroy(hitColliders[i].transform.gameObject);
                 }
             }
         }

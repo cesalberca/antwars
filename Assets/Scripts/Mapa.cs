@@ -33,16 +33,16 @@ public class Mapa : MonoBehaviour {
                 for (int j = 0; j < tilesColumna; j++)
                 {
                     muroACrear = new Muro(j, i);
-                    if (arrayTiles[i, j-1].ge
-                    {
-                    elegidor = Random.Range(0, 100);
-                    }
-                    else
-                    {
-                        elegidor = Random.Range(0, 60);
-                    }
+                //if (arrayTiles[i, j-1].ge
+                //{
+                elegidor = Random.Range(0, 100);
+                //}
+                //else
+                //{
+                //    elegidor = Random.Range(0, 60);
+                //}
 
-                    if (elegidor < porcientoBloque)
+                if (elegidor < porcientoBloque)
                     {
                         arrayTiles[i, j] = Instantiate(muro, new Vector3(muroACrear.posicionX, -muroACrear.posicionY, 0), Quaternion.identity) as GameObject;
                         arrayTiles[i, j].AddComponent<BoxCollider2D>();
