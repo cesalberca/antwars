@@ -6,14 +6,18 @@ public class Mapa : MonoBehaviour {
     public GameObject fondo;
     public int tilesFila = 5;                               //La altura del mundo generado
     public int tilesColumna = 5;                            //La anchura del mundo generado
-    [Range(0, 100)]
-    public int porcientoBloque = 75;        //El porciento de bloque/no bloque de la generacion de mundo
     GameObject[,] arrayTiles;
+    [Range(1, 10)]
+    public int porcientoCavernas = 5;
+    [Range(0, 10)]
+    public int tamañoBase = 5;
 
 
     // Use this for initialization
     void Start () {
         crearMundo();
+        generaCavernas();
+        huecoBase();
     }
 
     // Update is called once per frame
@@ -39,7 +43,7 @@ public class Mapa : MonoBehaviour {
 
         for (int i = 0; i < tilesFila; i++)
         {
-            for (int j = 0; j < tilesColumna; j++)
+            for (int j = 0; j < tilesColumna; j++) //Aquí llenamos el mapa de muros.
             {
                 muroACrear = new Muro(j, i);
                 arrayTiles[i, j] = Instantiate(muro, new Vector3(muroACrear.posicionX, -muroACrear.posicionY, 0), Quaternion.identity) as GameObject;
@@ -52,44 +56,56 @@ public class Mapa : MonoBehaviour {
             }
         }
 
-        for (int j = 1; j < tilesColumna - 1; j++)
-        {
-            for (int destruidor = Random.Range(1, 5); destruidor < Random.Range(5, 10); destruidor++)
+       }
+
+    void generaCavernas() // Con este metodo y el siguiente se crean en el mapa huecos de forma aleatoria regulados por el valor 'porcientoCavernas'.
+    {
+        for (int a =0; a <= porcientoCavernas;a++)
             {
-                Destroy(arrayTiles[destruidor, j].transform.gameObject);
+             for (int j = 0; j < tilesColumna; j++)
+             {
+                     int destruidor = Random.Range(0, tilesFila);
+                     Destroy(arrayTiles[destruidor, j].transform.gameObject);
+            }
+                creaEspacios();
+           }
+    }
+
+
+    void creaEspacios()
+    {
+        for (int j = 0; j < porcientoCavernas * 2; j++)
+        {
+            int posXBola = Random.Range(tilesFila / 8, tilesFila - (tilesFila / 8));
+            int posYBola = Random.Range(tilesColumna / 8, tilesColumna - (tilesColumna / 8));
+            for (int i = 0; i <= (tilesFila / 8) /2; i++)
+            {
+                Destroy(arrayTiles[posXBola + i, posYBola + i].transform.gameObject);
+                Destroy(arrayTiles[posXBola, posYBola + i].transform.gameObject);
+                Destroy(arrayTiles[posXBola + i, posYBola].transform.gameObject);
+                Destroy(arrayTiles[posXBola, posYBola - i].transform.gameObject);
+                Destroy(arrayTiles[posXBola - i, posYBola].transform.gameObject);
+                Destroy(arrayTiles[posXBola - i, posYBola - i].transform.gameObject);
+                Destroy(arrayTiles[posXBola - i, posYBola + i].transform.gameObject);
+                Destroy(arrayTiles[posXBola + i, posYBola - i].transform.gameObject);
             }
         }
-        /*for (int j = 1; j < tilesColumna - 1; j++)
+    }
+
+    void huecoBase() //Aquí creamos en el centro del mapa un especio donde se ubicará la base que defenderemos del enemigo. Se controla su tamaño con la variable 'tamañoBase'.
+    {
+        int posXBase = (tilesColumna / 2) - (tamañoBase / 2);
+        int posYBase = (tilesFila / 2) - (tamañoBase / 2);
+
+        for (int i = 0; i < tamañoBase; i++)
         {
-            for (int destruidor = Random.Range(10, 15); destruidor < Random.Range(15, 20); destruidor++)
+            for ( int j = 0; j < tamañoBase; j++ )
             {
-                Destroy(arrayTiles[destruidor, j].transform.gameObject);
-            }
-        }*/
-        for (int j = 1; j < tilesColumna - 1; j++)
-        {
-            for (int destruidor = Random.Range(20, 25); destruidor < Random.Range(25, 29); destruidor++)
-            {
-                Destroy(arrayTiles[destruidor, j].transform.gameObject);
+                Destroy(arrayTiles[(posXBase+i),(posYBase+j)].transform.gameObject);
             }
         }
 
-        for (int i = 1; i < tilesFila - 1; i++)
-        {
-            for (int destruidor = Random.Range(5, 10); destruidor < Random.Range(10, 15); destruidor++)
-            {
-                Destroy(arrayTiles[i, destruidor].transform.gameObject);
-            }
-        }
-        for (int i = 1; i < tilesFila-1; i++)
-        {
-            for (int destruidor = Random.Range(15, 20); destruidor < Random.Range(20, 25); destruidor++)
-            {
-                Destroy(arrayTiles[i, destruidor].transform.gameObject);
-            }
-
-        }
-    } 
+    }
     }
      
  
