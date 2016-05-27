@@ -75,12 +75,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocidad: 0.05
   vida: 100
-  capa:
-    serializedVersion: 2
-    m_Bits: 0
-  cuerpo: {fileID: 0}
   camaraPrincipal: {fileID: 0}
   distanciaInteraccion: 5
+  almacenMateriales: 100
+  velocidadPicar: 0.1
   almacenArmas:
   - {fileID: 151158, guid: 3beeaf60e14c3a248ba9de8e80b03f62, type: 2}
   - {fileID: 144078, guid: 8bc043117f2c65341ab8b6e384da977f, type: 2}
@@ -90,6 +88,7 @@ MonoBehaviour:
   - {fileID: 144520, guid: 78ed3adfdece26c41bfec503735ddeec, type: 2}
   almacenMuros:
   - {fileID: 161190, guid: e0b589c1e8b680e4a9d8e0d4d9e534f3, type: 2}
+  HUD: {fileID: 0}
 --- !u!212 &21254678
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -171,6 +170,10 @@ Prefab:
       propertyPath: almacenMuros.Array.data[0]
       value: 
       objectReference: {fileID: 161190, guid: e0b589c1e8b680e4a9d8e0d4d9e534f3, type: 2}
+    - target: {fileID: 0}
+      propertyPath: velocidadPicar
+      value: 0.1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 147208}

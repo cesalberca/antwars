@@ -22,11 +22,13 @@ public class Jugador : Personaje{
 
     // Use this for initialization
     void Start () {
-	}
+        HUD.GetComponent<GestorHUD>().refrescar();
+    }
 	
 	// Update is called once per frame
 	void Update () {
         mover(new Vector2());
+        mover2();
 
         elegirArma();
         cambiarArma();
@@ -51,14 +53,14 @@ public class Jugador : Personaje{
             if (indexSeleccionado > 0)
             {
                 elegirArmaPorIndex(indexSeleccionado - 1);
-                aparecerArma();
+                aparecerArma(this.transform.gameObject);
             }
         } else if (Input.GetAxis("Mouse ScrollWheel") < 0)
         {
             if (indexSeleccionado < almacenArmas.Count - 1)
             {
                 elegirArmaPorIndex(indexSeleccionado + 1);
-                aparecerArma();
+                aparecerArma(this.transform.gameObject);
             }
         }
     }
@@ -83,33 +85,39 @@ public class Jugador : Personaje{
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             elegirArmaPorIndex(0);
-            aparecerArma();
+            aparecerArma(this.transform.gameObject);
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             elegirArmaPorIndex(1);
-            aparecerArma();
+            aparecerArma(this.transform.gameObject);
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             elegirArmaPorIndex(2);
-            aparecerArma();
+            aparecerArma(this.transform.gameObject);
         }
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
             elegirArmaPorIndex(3);
-            aparecerArma();
+            aparecerArma(this.transform.gameObject);
         }
         if (Input.GetKeyDown(KeyCode.Alpha5))
         {
             elegirArmaPorIndex(4);
-            aparecerArma();
+            aparecerArma(this.transform.gameObject);
         }
         if (Input.GetKeyDown(KeyCode.Alpha6))
         {
             elegirArmaPorIndex(5);
-            aparecerArma();
+            aparecerArma(this.transform.gameObject);
         }
+    }
+
+    public void elegirArmaBoton(int indexArma)
+    {
+        elegirArmaPorIndex(indexArma);
+        aparecerArma(this.transform.gameObject);
     }
 
     /// <summary>
@@ -125,11 +133,11 @@ public class Jugador : Personaje{
     /// <summary>
     /// hace aparecer el arma seleccionada
     /// </summary>
-    void aparecerArma()
+    void aparecerArma(GameObject jugador)
     {
-        matarHijos(this.gameObject);
-        armaSeleccionada = Instantiate(armaSeleccionada, new Vector2(this.transform.position.x, this.transform.position.y), Quaternion.identity) as GameObject;
-        armaSeleccionada.transform.parent = gameObject.transform;
+        matarHijos(jugador);
+        armaSeleccionada = Instantiate(armaSeleccionada, new Vector2(jugador.transform.position.x, jugador.transform.position.y), Quaternion.identity) as GameObject;
+        armaSeleccionada.transform.parent = jugador.gameObject.transform;
     }
 
     /// <summary>
@@ -179,6 +187,37 @@ public class Jugador : Personaje{
                 this.transform.position = position;
             }
         }
+
+    protected void mover2()
+    {
+        float movex;
+        float movey;
+        float velocidad = 10;
+        if (Input.GetKey(KeyCode.A))
+        {
+            movex = -1;
+        }  
+        else if (Input.GetKey(KeyCode.D))
+        {
+            movex = 1;
+        } else
+        {
+            movex = 0;
+        }
+        if (Input.GetKey(KeyCode.W))
+        {
+            movey = 1;
+        }
+        else if (Input.GetKey(KeyCode.S))
+        {
+            movey = -1;
+        } else
+        {
+            movey = 0;
+        }
+            
+        this.GetComponent<Rigidbody2D>().velocity = new Vector2(movex * velocidad * Time.timeScale, movey * velocidad * Time.timeScale);
+    }
 
     public void controlarMirada()
     {
