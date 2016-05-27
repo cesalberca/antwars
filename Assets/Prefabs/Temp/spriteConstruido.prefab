@@ -9,6 +9,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 411820}
   - 212: {fileID: 21284198}
+  - 114: {fileID: 11436628}
   m_Layer: 8
   m_Name: spriteConstruido
   m_TagString: Untagged
@@ -28,6 +29,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!114 &11436628
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 161190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5c82d2bbe204e745a1333f0399aec9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  posicionX: 0
+  posicionY: 0
+  vidaMuro: 10
+  costConstruccion: 20
 --- !u!212 &21284198
 SpriteRenderer:
   m_ObjectHideFlags: 1

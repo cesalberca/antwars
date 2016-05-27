@@ -7,20 +7,23 @@ public class ArmaPistola : ArmaBasica {
 	void Start () {
         puedeDisparar = true;
         camaraPrincipal = GameObject.Find("Main Camera").GetComponent<Camera>();
+        jugador = this.transform.parent.gameObject;
     }
 	
 	// Update is called once per frame
 	void Update () {
-        jugador = this.transform.parent.gameObject;
-        if (Input.GetKey(KeyCode.F))
-        {
-            if (puedeDisparar)
-            {
-                disparar();
-            }
-        }
         moverArma();
 	}
+
+    bool controlarDisparo()
+    {
+        if (puedeDisparar)
+        {
+            disparar();
+            return true;
+        }
+        else return false;
+    }
 
     /// <summary>
     /// dispara el proyectil de este arma cada vez que el calcularRatio, la tasa de fuego, le deja
@@ -36,6 +39,7 @@ public class ArmaPistola : ArmaBasica {
         nuevaBala.GetComponent<Rigidbody2D>().AddRelativeForce((getDireccionDisparo() / getDireccionDisparo().magnitude) * potencia);
         //nuevaBala.tag = "BloqueConstruido";
         nuevaBala.GetComponent<BoxCollider2D>().size = new Vector2(0.1f, 0.1f);
+        nuevaBala.GetComponent<Proyectil>().dano = this.dano;
         //nuevaBala.transform.localScale = new Vector3(1, 1, 1);
         StartCoroutine(calcularRatio(velocidadDisparo));
         Destroy(nuevaBala, 10);

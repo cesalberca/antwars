@@ -4,9 +4,10 @@ using System.Collections;
 public class ArmaBasica : MonoBehaviour {
 
     //public int id;
-    //public int dano;
+    public int dano;
     public int potencia;
-    public int amplitud;
+    //public int amplitud;
+    public int gastoDisparo;
     public float velocidadDisparo;
     public Camera camaraPrincipal;
     public GameObject bala;
@@ -24,10 +25,6 @@ public class ArmaBasica : MonoBehaviour {
     /// <summary>
     /// cambiar para que sus hijos tengas distintos tipos de disparo
     /// </summary>
-    public void disparar()
-    {
-
-    }
 
     /// <summary>
     /// 

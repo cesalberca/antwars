@@ -40,9 +40,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b26be4e5edd5534788e05a7731f6eef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dano: 5
   potencia: 500
-  amplitud: 0
-  velocidadDisparo: 1
+  gastoDisparo: 5
+  velocidadDisparo: 5
   camaraPrincipal: {fileID: 0}
   bala: {fileID: 153984, guid: 5820c96318c7cd248a38b40a64e2b394, type: 2}
   jugador: {fileID: 147208, guid: c978f126093797246a56686de074a757, type: 2}

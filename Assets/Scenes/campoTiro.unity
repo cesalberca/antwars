@@ -175,10 +175,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8c00bfa9019b9e948ab93b24206534bd, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &704635891 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 175620, guid: 8c00bfa9019b9e948ab93b24206534bd, type: 2}
+--- !u!114 &704635892 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11457520, guid: 8c00bfa9019b9e948ab93b24206534bd,
+    type: 2}
   m_PrefabInternal: {fileID: 673293263}
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!1 &750352696 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 145774, guid: 15d2b606d530bac4eb5ca0f38057c4fe, type: 2}
@@ -247,13 +249,23 @@ Prefab:
       propertyPath: camaraPrincipal
       value: 
       objectReference: {fileID: 750352701}
+    - target: {fileID: 11415624, guid: c978f126093797246a56686de074a757, type: 2}
+      propertyPath: HUD
+      value: 
+      objectReference: {fileID: 1603166621}
+    - target: {fileID: 11415624, guid: c978f126093797246a56686de074a757, type: 2}
+      propertyPath: velocidadPicar
+      value: 0.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c978f126093797246a56686de074a757, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &1008519667 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 159124, guid: 8c00bfa9019b9e948ab93b24206534bd, type: 2}
+--- !u!114 &1008519668 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 11405890, guid: 8c00bfa9019b9e948ab93b24206534bd,
+    type: 2}
   m_PrefabInternal: {fileID: 673293263}
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!1 &1168433030 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 147208, guid: c978f126093797246a56686de074a757, type: 2}
@@ -273,8 +285,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6432528f4be8f0a4fbb53db0b00de14a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  salud: {fileID: 1008519667}
-  materiales: {fileID: 704635891}
+  salud: {fileID: 1008519668}
+  materiales: {fileID: 704635892}
   jugador: {fileID: 1168433030}
 --- !u!1001 &1776252241
 Prefab:

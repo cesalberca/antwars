@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class GestorHUD : MonoBehaviour {
 
-    public GameObject salud;
-    public GameObject materiales;
+    public Text salud;
+    public Text materiales;
     public GameObject jugador;
 	// Use this for initialization
 	void Start () {
@@ -18,7 +19,7 @@ public class GestorHUD : MonoBehaviour {
 
     public void refrescar()
     {
-        salud.GetComponents<GUIText>().SetValue((jugador.GetComponent<Jugador>().vida), 0);
-        materiales.GetComponents<GUIText>().SetValue((jugador.GetComponent<Jugador>().almacenMateriales), 0);
+        salud.text = "SALUD " + jugador.GetComponent<Jugador>().vida;
+        materiales.text = "MATERIALES " + jugador.GetComponent<Jugador>().almacenMateriales;
     }
 }

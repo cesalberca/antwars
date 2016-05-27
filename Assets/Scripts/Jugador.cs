@@ -9,6 +9,7 @@ public class Jugador : Personaje{
     public Camera camaraPrincipal;                          //la camara principal que se quiere que siga al personaje
     public int distanciaInteraccion = 5;                    //la distancia a la que se pueden interactuar
     public int almacenMateriales = 100;                    //la cantidad de materiales que tiene el jugador
+    public float velocidadPicar = 0.5f;
     public List<GameObject> almacenArmas;                   //la lista de armas que puede equipar
     public List<GameObject> almacenMuros;                   //la lista de todos los tipos de muros que puede colocar
     public GameObject HUD;
@@ -16,6 +17,7 @@ public class Jugador : Personaje{
     //cosas a crear
     private GameObject armaSeleccionada;
     private int indexSeleccionado = 0;
+    private bool puedePicar = true;
 
 
     // Use this for initialization
@@ -36,6 +38,8 @@ public class Jugador : Personaje{
         construir();
 
         controlarBombas();
+
+        disparar();
     }
 
     #region INVENTARIO
@@ -61,9 +65,14 @@ public class Jugador : Personaje{
 
     void disparar()
     {
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKey(KeyCode.F) && this.almacenMateriales >= armaSeleccionada.GetComponent<ArmaBasica>().gastoDisparo)
         {
-            HUD.GetComponent<GestorHUD>().refrescar();
+            if (armaSeleccionada.GetComponent<ArmaBasica>().puedeDisparar)
+            {
+                armaSeleccionada.SendMessage("controlarDisparo");
+                this.almacenMateriales = this.almacenMateriales - armaSeleccionada.GetComponent<ArmaBasica>().gastoDisparo;
+                HUD.GetComponent<GestorHUD>().refrescar();
+            }
         }
     }
     /// <summary>
@@ -227,13 +236,19 @@ public class Jugador : Personaje{
             this.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
             this.GetComponent<Rigidbody2D>().angularVelocity = 0;
         }
+
+    public IEnumerator delayPicar(float delayTime)
+    {
+        yield return new WaitForSeconds(delayTime);
+        puedePicar = true;
+    }
     #endregion
 
     #region FEATURES
 
     void picar()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0))
         {
             controlarDestruccion();
         }
@@ -252,17 +267,20 @@ public class Jugador : Personaje{
     /// </summary>
     void controlarDestruccion()
     {
-        if (getDistanciaMouseObject(this.gameObject) < distanciaInteraccion)
+        if (puedePicar)
         {
-            if (seleccionarGameObjectMouse() != null)
+            if (getDistanciaMouseObject(this.gameObject) < distanciaInteraccion)
             {
-            //if (!seleccionarGameObjectMouse().CompareTag("Jugador") && !seleccionarGameObjectMouse().CompareTag("Enemigo"))
-            if (!seleccionarGameObjectMouse().CompareTag("Jugador"))
+                if (seleccionarGameObjectMouse() != null)
                 {
-                    seleccionarGameObjectMouse().GetComponent<Muro>().vidaMuro --;
-                    if(seleccionarGameObjectMouse().GetComponent<Muro>().vidaMuro <= 0)
+                    //if (!seleccionarGameObjectMouse().CompareTag("Jugador") && !seleccionarGameObjectMouse().CompareTag("Enemigo"))
+                    if (!seleccionarGameObjectMouse().CompareTag("Jugador") && seleccionarGameObjectMouse().GetComponent<Muro>())
                     {
-                        Destroy(seleccionarGameObjectMouse());
+                        puedePicar = false;
+                        seleccionarGameObjectMouse().GetComponent<Muro>().bajarVida(1);
+                        this.almacenMateriales = this.almacenMateriales + 1;
+                        HUD.GetComponent<GestorHUD>().refrescar();
+                        StartCoroutine(delayPicar(velocidadPicar));
                     }
                 }
             }
@@ -278,13 +296,15 @@ public class Jugador : Personaje{
     {
         if (getDistanciaMouseObject(this.gameObject) < distanciaInteraccion)
         {
-            if (seleccionarGameObjectMouse() == null)
+            if (seleccionarGameObjectMouse() == null && this.almacenMateriales >= bloqueAConstruir.GetComponent<Muro>().costConstruccion)
             {
                 GameObject nuevoCubo;//cambiar el resource load por una referencia
                 nuevoCubo = Instantiate(bloqueAConstruir, new Vector3(Mathf.Round(camaraPrincipal.ScreenToWorldPoint(Input.mousePosition).x), Mathf.Round(camaraPrincipal.ScreenToWorldPoint(Input.mousePosition).y), 0), Quaternion.identity) as GameObject;
-                nuevoCubo.AddComponent<Muro>();
+                //nuevoCubo.AddComponent<Muro>();
                 //nuevoCubo.tag = "BloqueConstruido";
                 nuevoCubo.AddComponent<BoxCollider2D>();
+                this.almacenMateriales = this.almacenMateriales - nuevoCubo.GetComponent<Muro>().costConstruccion;
+                HUD.GetComponent<GestorHUD>().refrescar();
                 return nuevoCubo;
             }
             else return null;
@@ -297,11 +317,8 @@ public class Jugador : Personaje{
     {
         if (Input.GetKeyDown(KeyCode.F))
         {
-            Debug.Log("HOLA1");
-            Debug.Log(indexSeleccionado);
             if (armaSeleccionada.GetComponent<Explosivo>())
             {
-                Debug.Log("HOLA");
                 colocarBomba(armaSeleccionada.GetComponent<Explosivo>().delayBomba, armaSeleccionada.GetComponent<Explosivo>().radioBomba);
             }
         }
@@ -313,12 +330,13 @@ public class Jugador : Personaje{
     void colocarBomba(int delayBomba, int radioBomba)
     {
         Explosivo nuevaBomba = armaSeleccionada.GetComponent<Explosivo>();
+        this.almacenMateriales = this.almacenMateriales - armaSeleccionada.GetComponent<ArmaBasica>().gastoDisparo;
         StartCoroutine(nuevaBomba.detonarBomba(controlarConstruccion(armaSeleccionada), delayBomba, radioBomba));
     }
-    #endregion
 
-    protected override void choqueConObjeto<T>(T componente)
+    protected override void onCollisionEnter(Collision2D coll)
     {
         throw new NotImplementedException();
     }
+    #endregion
 }

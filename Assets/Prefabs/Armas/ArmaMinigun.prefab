@@ -40,10 +40,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d92f83c39fed6c446b806dfa9697f8f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 1
-  dano: 10
+  dano: 1
   potencia: 500
-  amplitud: 1
+  gastoDisparo: 1
   velocidadDisparo: 0.2
   camaraPrincipal: {fileID: 0}
   bala: {fileID: 153984, guid: 5820c96318c7cd248a38b40a64e2b394, type: 2}

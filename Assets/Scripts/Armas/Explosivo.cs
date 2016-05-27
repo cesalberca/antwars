@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Explosivo : MonoBehaviour
+public class Explosivo : ArmaBasica
 {
     public int delayBomba;
     public int radioBomba;
@@ -44,6 +44,7 @@ public class Explosivo : MonoBehaviour
                     //Destroy(hitColliders[i].transform.gameObject);
                 }
             }
+            Destroy(bomba.transform.gameObject);
         }
     }
 }
