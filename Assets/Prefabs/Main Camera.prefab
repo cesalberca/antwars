@@ -13,6 +13,9 @@ GameObject:
   - 124: {fileID: 12466050}
   - 81: {fileID: 8121254}
   - 114: {fileID: 11492752}
+  - 114: {fileID: 11491872}
+  - 114: {fileID: 11445816}
+  - 114: {fileID: 11434150}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -52,7 +55,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 1.1555779
+  orthographic size: 2.8843849
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -80,7 +83,7 @@ Behaviour:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 145774}
   m_Enabled: 1
---- !u!114 &11492752
+--- !u!114 &11434150
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -93,6 +96,53 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dampTime: 0.15
   objetivo: {fileID: 0}
+  ratonEstaVisible: 0
+--- !u!114 &11445816
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 145774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5c82d2bbe204e745a1333f0399aec9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  posicionX: 0
+  posicionY: 0
+  vidaMuro: 0
+  costConstruccion: 0
+--- !u!114 &11491872
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 145774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bab977848ceb1e842a8f04588026df4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  muro: {fileID: 147248, guid: 8d2c01aeb303ef745810e93d45d6494d, type: 2}
+  fondo: {fileID: 107670, guid: e49f40713126c4245826d589bb2a9014, type: 2}
+  tilesFila: 30
+  tilesColumna: 30
+  porcientoCavernas: 3
+  "tama\xF1oBase": 2
+--- !u!114 &11492752
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 145774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51a94e340933665458d37ac5bdf582db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dampTime: 0.05
+  objetivo: {fileID: 0}
+  ratonEstaVisible: 0
 --- !u!124 &12466050
 Behaviour:
   m_ObjectHideFlags: 1

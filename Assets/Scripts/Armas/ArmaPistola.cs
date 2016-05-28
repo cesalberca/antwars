@@ -7,7 +7,7 @@ public class ArmaPistola : ArmaBasica {
 	void Start () {
         puedeDisparar = true;
         camaraPrincipal = GameObject.Find("Main Camera").GetComponent<Camera>();
-        //jugador = GameObject.Find("Jugador").transform.gameObject;
+        jugador = GameObject.Find("Jugador").transform.gameObject;
     }
 	
 	// Update is called once per frame

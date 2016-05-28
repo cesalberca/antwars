@@ -26,7 +26,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 147208}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.362, z: 0}
   m_LocalScale: {x: 1.6, y: 1.6, z: 1.6}
   m_Children: []
   m_Father: {fileID: 0}
@@ -78,7 +78,7 @@ MonoBehaviour:
   camaraPrincipal: {fileID: 0}
   distanciaInteraccion: 5
   almacenMateriales: 100
-  velocidadPicar: 0.1
+  velocidadPicar: 0.05
   almacenArmas:
   - {fileID: 151158, guid: 3beeaf60e14c3a248ba9de8e80b03f62, type: 2}
   - {fileID: 144078, guid: 8bc043117f2c65341ab8b6e384da977f, type: 2}

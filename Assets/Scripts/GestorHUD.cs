@@ -19,7 +19,7 @@ public class GestorHUD : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        controlarBotones();
+        mostrarBotones();
     }
 
     public void refrescar()
@@ -28,17 +28,21 @@ public class GestorHUD : MonoBehaviour {
         materiales.text = "MATERIALES " + jugador.GetComponent<Jugador>().almacenMateriales;
     }
 
-    void controlarBotones()
+    void mostrarBotones()
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            if (estadoBotones == true)
-            {
-                enableAlmacenBotones(false);
-            } else if (estadoBotones == false)
-            {
-                enableAlmacenBotones(true);
-            }
+            controlarBotones();
+        }
+    }
+    public void controlarBotones()
+    {
+        if (estadoBotones == true)
+        {
+            enableAlmacenBotones(false);
+        } else if (estadoBotones == false)
+        {
+            enableAlmacenBotones(true);
         }
     }
 
