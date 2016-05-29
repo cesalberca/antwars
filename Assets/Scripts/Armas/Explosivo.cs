@@ -32,7 +32,7 @@ public class Explosivo : ArmaBasica
         yield return new WaitForSeconds(delayTime);
         if (bomba != null)
         {
-            this.GetComponent<AudioSource>().PlayOneShot(this.GetComponent<AudioSource>().clip);
+            bomba.GetComponent<AudioSource>().PlayOneShot(bomba.GetComponent<AudioSource>().clip);
             explosion = Instantiate(explosion, bomba.transform.position, Quaternion.identity) as GameObject;
             Collider2D[] hitColliders = Physics2D.OverlapCircleAll(bomba.transform.position, radioBomba);
             for (int i = 0; i < hitColliders.Length; i++)

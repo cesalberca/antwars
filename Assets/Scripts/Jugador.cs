@@ -368,8 +368,8 @@ public class Jugador : Personaje{
     void colocarBomba(int delayBomba, int radioBomba)
     {
         Explosivo nuevaBomba = armaSeleccionada.GetComponent<Explosivo>();
-        StartCoroutine(nuevaBomba.detonarBomba(controlarConstruccion(armaSeleccionada), delayBomba, radioBomba));
         this.almacenMateriales = this.almacenMateriales - armaSeleccionada.GetComponent<ArmaBasica>().gastoDisparo;
+        StartCoroutine(nuevaBomba.detonarBomba(controlarConstruccion(armaSeleccionada), delayBomba, radioBomba));
     }
 
     protected override void onCollisionEnter(Collision2D coll)
