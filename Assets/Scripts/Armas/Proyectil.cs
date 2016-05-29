@@ -4,6 +4,7 @@ using System.Collections;
 public class Proyectil : MonoBehaviour
 {
     public int dano = 1;
+    //public AudioClip choque;
     // Use this for initialization
     void Start()
     {
@@ -21,6 +22,7 @@ public class Proyectil : MonoBehaviour
         if (coll.transform.gameObject.GetComponent<Muro>())
         {
             coll.transform.gameObject.GetComponent<Muro>().bajarVida(dano);
+            this.GetComponent<AudioSource>().PlayOneShot(this.GetComponent<AudioSource>().clip);
             Destroy(this.transform.gameObject);
         }
     }

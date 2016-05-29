@@ -30,6 +30,7 @@ public class ArmaPistola : ArmaBasica {
     /// </summary>
     void disparar()
     {
+        this.GetComponent<AudioSource>().PlayOneShot(this.GetComponent<AudioSource>().clip);    
         puedeDisparar = false;
         GameObject nuevaBala;
         nuevaBala = Instantiate(bala, new Vector2(this.transform.position.x, this.transform.position.y) + (getDireccionDisparo() / getDireccionDisparo().magnitude) / 10, Quaternion.identity) as GameObject;

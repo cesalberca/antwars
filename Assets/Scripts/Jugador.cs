@@ -353,7 +353,7 @@ public class Jugador : Personaje{
 
     void controlarBombas()
     {
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.F) && this.almacenMateriales >= armaSeleccionada.GetComponent<ArmaBasica>().gastoDisparo)
         {
             if (armaSeleccionada.GetComponent<Explosivo>())
             {
@@ -368,8 +368,8 @@ public class Jugador : Personaje{
     void colocarBomba(int delayBomba, int radioBomba)
     {
         Explosivo nuevaBomba = armaSeleccionada.GetComponent<Explosivo>();
-        this.almacenMateriales = this.almacenMateriales - armaSeleccionada.GetComponent<ArmaBasica>().gastoDisparo;
         StartCoroutine(nuevaBomba.detonarBomba(controlarConstruccion(armaSeleccionada), delayBomba, radioBomba));
+        this.almacenMateriales = this.almacenMateriales - armaSeleccionada.GetComponent<ArmaBasica>().gastoDisparo;
     }
 
     protected override void onCollisionEnter(Collision2D coll)

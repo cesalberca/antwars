@@ -323,6 +323,10 @@ Prefab:
       propertyPath: objetivo
       value: 
       objectReference: {fileID: 10156640}
+    - target: {fileID: 11491872, guid: 15d2b606d530bac4eb5ca0f38057c4fe, type: 2}
+      propertyPath: "tama\xF1oBase"
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 15d2b606d530bac4eb5ca0f38057c4fe, type: 2}
   m_IsPrefabParent: 0

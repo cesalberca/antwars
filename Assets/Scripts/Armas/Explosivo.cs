@@ -6,6 +6,7 @@ public class Explosivo : ArmaBasica
     public int delayBomba;
     public int radioBomba;
     public int danoBomba;
+    public GameObject explosion;
 	// Use this for initialization
 	void Start () {
     }
@@ -31,17 +32,17 @@ public class Explosivo : ArmaBasica
         yield return new WaitForSeconds(delayTime);
         if (bomba != null)
         {
+            this.GetComponent<AudioSource>().PlayOneShot(this.GetComponent<AudioSource>().clip);
+            explosion = Instantiate(explosion, bomba.transform.position, Quaternion.identity) as GameObject;
             Collider2D[] hitColliders = Physics2D.OverlapCircleAll(bomba.transform.position, radioBomba);
-            //Instantiate(particulaBomba, bomba.transform.position, Quaternion.identity);
             for (int i = 0; i < hitColliders.Length; i++)
             {
-                if (!hitColliders[i].CompareTag("Jugador"))
+                if (hitColliders[i].GetComponent<Personaje>())
                 {
-                    if (hitColliders[i].GetComponent<Muro>())
-                    {
-                        hitColliders[i].GetComponent<Muro>().bajarVida(danoBomba);
-                    }
-                    //Destroy(hitColliders[i].transform.gameObject);
+                    hitColliders[i].GetComponent<Personaje>().bajarVida(danoBomba);
+                } else if (hitColliders[i].GetComponent<Muro>())
+                {
+                    hitColliders[i].GetComponent<Muro>().bajarVida(danoBomba);
                 }
             }
             Destroy(bomba.transform.gameObject);
