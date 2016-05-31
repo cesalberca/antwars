@@ -86,6 +86,7 @@ MonoBehaviour:
   - {fileID: 118908, guid: a46b01088618a8148b7e28c5c99883ec, type: 2}
   - {fileID: 150616, guid: e1daa1707f8302443bc4de44bffeff09, type: 2}
   - {fileID: 144520, guid: 78ed3adfdece26c41bfec503735ddeec, type: 2}
+  - {fileID: 195548, guid: 9a2d6a518d5999a42bab6300134b08a5, type: 2}
   almacenMuros:
   - {fileID: 161190, guid: e0b589c1e8b680e4a9d8e0d4d9e534f3, type: 2}
   HUD: {fileID: 0}
@@ -128,7 +129,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 0}
       propertyPath: almacenArmas.Array.size
-      value: 3
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: almacenMuros.Array.size
@@ -174,6 +175,10 @@ Prefab:
       propertyPath: velocidadPicar
       value: 0.1
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: almacenArmas.Array.data[6]
+      value: 
+      objectReference: {fileID: 195548, guid: 9a2d6a518d5999a42bab6300134b08a5, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 147208}
