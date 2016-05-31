@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 486542}
   - 212: {fileID: 21266090}
   - 114: {fileID: 11425414}
-  - 58: {fileID: 5818182}
+  - 60: {fileID: 6080436}
   m_Layer: 0
   m_Name: Motosierra
   m_TagString: Untagged
@@ -26,12 +26,12 @@ Transform:
   m_GameObject: {fileID: 195548}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 338.44333, y: 170.28955, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.2}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!58 &5818182
-CircleCollider2D:
+--- !u!60 &6080436
+PolygonCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -42,8 +42,34 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.64
+  m_Points:
+    m_Paths:
+    - - {x: 0.25, y: 0.015}
+      - {x: 0.32999998, y: 0.114999995}
+      - {x: 0.34, y: -0.24499999}
+      - {x: 0.42999998, y: -0.355}
+      - {x: 0.56, y: -0.39499998}
+      - {x: 0.65999997, y: -0.295}
+      - {x: 0.65999997, y: 0.285}
+      - {x: 0.58, y: 0.275}
+      - {x: 0.57, y: 0.59499997}
+      - {x: 0.24, y: 0.655}
+      - {x: -0.24, y: 0.655}
+      - {x: -0.35, y: 0.565}
+      - {x: -0.39, y: 0.435}
+      - {x: -0.24, y: 0.33499998}
+      - {x: 0.04, y: 0.235}
+      - {x: -0.06, y: 0.185}
+      - {x: -0.25, y: -0.024999999}
+      - {x: -0.39999998, y: -0.13499999}
+      - {x: -0.57, y: -0.305}
+      - {x: -0.65999997, y: -0.42499998}
+      - {x: -0.66999996, y: -0.555}
+      - {x: -0.66999996, y: -0.66499996}
+      - {x: -0.65999997, y: -0.675}
+      - {x: -0.45, y: -0.675}
+      - {x: -0.44, y: -0.645}
+      - {x: -0.24, y: -0.475}
 --- !u!114 &11425414
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -89,7 +115,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 34d7d2452f9f9524c90c73b18c098386, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 20baecda602d846459b5b91a72415664, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -103,15 +129,15 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 34d7d2452f9f9524c90c73b18c098386,
+      objectReference: {fileID: 21300000, guid: 20baecda602d846459b5b91a72415664,
         type: 3}
     - target: {fileID: 0}
       propertyPath: m_LocalScale.x
-      value: 0.2
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_LocalScale.y
-      value: 0.2
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_LocalScale.z

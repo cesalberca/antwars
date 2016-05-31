@@ -16,6 +16,7 @@ GameObject:
   - 114: {fileID: 11491872}
   - 114: {fileID: 11445816}
   - 114: {fileID: 11434150}
+  - 114: {fileID: 11494690}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -55,7 +56,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 2.8843849
+  orthographic size: 2.9294899
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -143,6 +144,22 @@ MonoBehaviour:
   dampTime: 0.05
   objetivo: {fileID: 0}
   ratonEstaVisible: 0
+--- !u!114 &11494690
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 145774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7ddce9bc845fd84486d476ad1e5ff29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  muro: {fileID: 147248, guid: 8d2c01aeb303ef745810e93d45d6494d, type: 2}
+  fondo: {fileID: 107670, guid: e49f40713126c4245826d589bb2a9014, type: 2}
+  tilesFila: 10
+  tilesColumna: 10
+  porcientoBloque: 75
 --- !u!124 &12466050
 Behaviour:
   m_ObjectHideFlags: 1
