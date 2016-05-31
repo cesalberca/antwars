@@ -6,6 +6,7 @@ public class Explosivo : ArmaBasica
     public int delayBomba;
     public int radioBomba;
     public int danoBomba;
+    //public bool esBomba;    
     public GameObject explosion;
 	// Use this for initialization
 	void Start () {
@@ -47,5 +48,11 @@ public class Explosivo : ArmaBasica
             }
             Destroy(bomba.transform.gameObject);
         }
+    }
+
+    void OnCollisionEnter2D(Collision2D coll)
+    {
+        Debug.Log("ha colisionado");
+        this.detonarBomba();
     }
 }

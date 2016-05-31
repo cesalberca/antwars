@@ -34,11 +34,11 @@ public class ArmaLanzaExplosivo : ArmaBasica {
             nuevaBala.GetComponent<Rigidbody2D>().gravityScale = 0;
             nuevaBala.GetComponent<Rigidbody2D>().AddRelativeForce((getDireccionDisparo() / getDireccionDisparo().magnitude) * potencia);
             //nuevaBala.tag = "BloqueConstruido";
-            bala.GetComponent<Explosivo>().detonarBomba(nuevaBala, 5f, 3);
             nuevaBala.GetComponent<BoxCollider2D>().size = new Vector2(0.3f, 0.3f);
             nuevaBala.transform.localScale = new Vector3(1, 1, 1);
             StartCoroutine(calcularRatio(velocidadDisparo));
-            Destroy(nuevaBala, 10);
         }
     }
+
+
 }
