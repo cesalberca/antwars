@@ -53,6 +53,6 @@ public class Explosivo : ArmaBasica
     void OnCollisionEnter2D(Collision2D coll)
     {
         Debug.Log("ha colisionado");
-        this.detonarBomba();
+        //this.detonarBomba();
     }
 }
