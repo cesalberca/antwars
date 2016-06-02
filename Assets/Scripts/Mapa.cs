@@ -4,6 +4,7 @@ using System.Collections;
 public class Mapa : MonoBehaviour {
     public GameObject muro;
     public GameObject fondo;
+    public GameObject centroOperaciones;
     public int tilesFila = 5;                               //La altura del mundo generado
     public int tilesColumna = 5;                            //La anchura del mundo generado
     GameObject[,] arrayTiles;
@@ -11,7 +12,6 @@ public class Mapa : MonoBehaviour {
     public int porcientoCavernas = 5;
     [Range(0, 10)]
     public int tamañoBase = 5;
-
 
     // Use this for initialization
     void Start () {
@@ -23,9 +23,10 @@ public class Mapa : MonoBehaviour {
     // Update is called once per frame
     void Update() {
     }
+
+
     void crearMundo()
     {
-
         arrayTiles = new GameObject[tilesFila, tilesColumna];
 
         Muro muroACrear;
@@ -104,6 +105,10 @@ public class Mapa : MonoBehaviour {
                 Destroy(arrayTiles[(posXBase+i),(posYBase+j)].transform.gameObject);
             }
         }
+
+        centroOperaciones = Instantiate(centroOperaciones, new Vector3(posXBase+tamañoBase/2, -posYBase - tamañoBase / 2, 0), Quaternion.identity) as GameObject;
+        centroOperaciones.AddComponent<BoxCollider2D>();
+        //centroOperaciones.AddComponent<Muro>();
 
     }
     }
