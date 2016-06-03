@@ -223,6 +223,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11415624, guid: c978f126093797246a56686de074a757, type: 2}
+      propertyPath: almacenArmas.Array.size
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 420278, guid: c978f126093797246a56686de074a757, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -263,6 +267,10 @@ Prefab:
       propertyPath: HUD
       value: 
       objectReference: {fileID: 1603166621}
+    - target: {fileID: 11415624, guid: c978f126093797246a56686de074a757, type: 2}
+      propertyPath: almacenArmas.Array.data[7]
+      value: 
+      objectReference: {fileID: 163898, guid: 7542c154810e7244b970cb259cd6b08b, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c978f126093797246a56686de074a757, type: 2}
   m_IsPrefabParent: 0

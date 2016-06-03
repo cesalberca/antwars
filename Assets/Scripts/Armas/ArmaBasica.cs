@@ -30,7 +30,7 @@ public class ArmaBasica : MonoBehaviour {
     /// 
     /// </summary>
     /// <returns>la posicion del raton en el mundo</returns>
-    private Vector3 getMousePosition()
+    public Vector3 getMousePosition()
     {
         Vector3 mousePos = new Vector2(camaraPrincipal.ScreenToWorldPoint(Input.mousePosition).x, camaraPrincipal.ScreenToWorldPoint(Input.mousePosition).y);
         return mousePos;
