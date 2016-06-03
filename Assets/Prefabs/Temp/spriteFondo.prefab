@@ -9,7 +9,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 467932}
   - 212: {fileID: 21201926}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: spriteFondo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23,7 +23,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 107670}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.317771, y: 1.5733538, z: 20.976562}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.6, y: 1.6, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
