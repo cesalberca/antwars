@@ -10,8 +10,8 @@ GameObject:
   - 4: {fileID: 420278}
   - 212: {fileID: 21254678}
   - 114: {fileID: 11415624}
-  - 61: {fileID: 6122874}
   - 50: {fileID: 5085570}
+  - 58: {fileID: 5808810}
   m_Layer: 0
   m_Name: Jugador
   m_TagString: Jugador
@@ -48,8 +48,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!61 &6122874
-BoxCollider2D:
+--- !u!58 &5808810
+CircleCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -61,7 +61,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 0.32, y: 0.32}
+  m_Radius: 0.103071906
 --- !u!114 &11415624
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -85,7 +85,7 @@ MonoBehaviour:
   - {fileID: 171164, guid: 02bb39ea9f105124eb5d9c4a7fd8e098, type: 2}
   - {fileID: 118908, guid: a46b01088618a8148b7e28c5c99883ec, type: 2}
   - {fileID: 150616, guid: e1daa1707f8302443bc4de44bffeff09, type: 2}
-  - {fileID: 144520, guid: 78ed3adfdece26c41bfec503735ddeec, type: 2}
+  - {fileID: 163898, guid: 7542c154810e7244b970cb259cd6b08b, type: 2}
   - {fileID: 195548, guid: 9a2d6a518d5999a42bab6300134b08a5, type: 2}
   almacenMuros:
   - {fileID: 161190, guid: e0b589c1e8b680e4a9d8e0d4d9e534f3, type: 2}
@@ -183,6 +183,22 @@ Prefab:
       propertyPath: almacenMateriales
       value: 1000
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: almacenArmas.Array.data[5]
+      value: 
+      objectReference: {fileID: 163898, guid: 7542c154810e7244b970cb259cd6b08b, type: 2}
+    - target: {fileID: 0}
+      propertyPath: almacenArmas.Array.data[7]
+      value: 
+      objectReference: {fileID: 163898, guid: 7542c154810e7244b970cb259cd6b08b, type: 2}
+    - target: {fileID: 0}
+      propertyPath: almacenArmas.Array.data[4]
+      value: 
+      objectReference: {fileID: 150616, guid: e1daa1707f8302443bc4de44bffeff09, type: 2}
+    - target: {fileID: 0}
+      propertyPath: almacenArmas.Array.data[8]
+      value: 
+      objectReference: {fileID: 163898, guid: 7542c154810e7244b970cb259cd6b08b, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 147208}

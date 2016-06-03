@@ -116,9 +116,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dano: 10
-  potencia: 300
+  potencia: 500
   gastoDisparo: 10
-  velocidadDisparo: 5
+  velocidadDisparo: 1
   camaraPrincipal: {fileID: 0}
   bala: {fileID: 128140, guid: fe8f163c2ef38ec4fa02c86cd014d639, type: 2}
   jugador: {fileID: 147208, guid: c978f126093797246a56686de074a757, type: 2}
@@ -162,7 +162,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 0}
       propertyPath: potencia
-      value: 300
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_LocalScale.x
@@ -175,6 +175,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_LocalScale.z
       value: 1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: velocidadDisparo
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

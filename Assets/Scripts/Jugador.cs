@@ -68,7 +68,7 @@ public class Jugador : Personaje{
 
     void disparar()
     {
-        if (Input.GetKey(KeyCode.F) && this.almacenMateriales >= armaSeleccionada.GetComponent<ArmaBasica>().gastoDisparo)
+        if (Input.GetMouseButton(0) && this.almacenMateriales >= armaSeleccionada.GetComponent<ArmaBasica>().gastoDisparo)
         {
             if (armaSeleccionada.GetComponent<ArmaBasica>().puedeDisparar)
             {
@@ -287,7 +287,7 @@ public class Jugador : Personaje{
 
     void picar()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(1))
         {
             controlarDestruccion();
         }
@@ -295,7 +295,7 @@ public class Jugador : Personaje{
 
     void construir()
     {
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(2))
         {
             controlarConstruccion(almacenMuros[0]);
         }
@@ -354,7 +354,7 @@ public class Jugador : Personaje{
 
     void controlarBombas()
     {
-        if (Input.GetKeyDown(KeyCode.F) && this.almacenMateriales >= armaSeleccionada.GetComponent<ArmaBasica>().gastoDisparo)
+        if (Input.GetMouseButton(0) && this.almacenMateriales >= armaSeleccionada.GetComponent<ArmaBasica>().gastoDisparo)
         {
             if (armaSeleccionada.GetComponent<Explosivo>())
             {

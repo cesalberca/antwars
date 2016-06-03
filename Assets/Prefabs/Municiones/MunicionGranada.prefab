@@ -115,18 +115,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d230643a8aee5a49904f92875038138, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dano: 0
-  potencia: 0
-  gastoDisparo: 0
-  velocidadDisparo: 0
+  dano: 10
+  potencia: 500
+  gastoDisparo: 50
+  velocidadDisparo: 1
   camaraPrincipal: {fileID: 0}
   bala: {fileID: 0}
   jugador: {fileID: 0}
   puedeDisparar: 0
-  delayBomba: 5
+  delayBomba: 0
   radioBomba: 3
   danoBomba: 5
-  esBomba: 0
   explosion: {fileID: 100008, guid: c466276509f8b40a59f02d115254fc25, type: 2}
 --- !u!212 &21250868
 SpriteRenderer:
@@ -176,6 +175,26 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_LocalScale.z
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: dano
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: delayBomba
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: velocidadDisparo
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: gastoDisparo
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: potencia
+      value: 500
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
