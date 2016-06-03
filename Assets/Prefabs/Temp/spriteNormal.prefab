@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 482950}
   - 212: {fileID: 21237030}
   - 114: {fileID: 11415158}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: spriteNormal
   m_TagString: Untagged
   m_Icon: {fileID: 0}

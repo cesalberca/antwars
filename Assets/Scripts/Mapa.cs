@@ -18,6 +18,7 @@ public class Mapa : MonoBehaviour {
         crearMundo();
         generaCavernas();
         huecoBase();
+        AstarPath.active.Scan();
     }
 
     // Update is called once per frame
