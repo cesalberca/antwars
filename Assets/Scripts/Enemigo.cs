@@ -1,79 +1,82 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
-using Random = UnityEngine.Random;
 using Pathfinding;
 
 public class Enemigo : Personaje {
 
+    // Elemento que se perseguirá
     public Transform target;
+    // Posición del objetvio
+    public Vector3 targetPosition;
+    // A* para que busque su objetivo
     Seeker seeker;
+    // Trayecto generado por el gráfico de A*.
     Path path;
-    int currentIndex;
-    float speed = 10;
-
+    // Index actual.
+    private int indexActual = 0;
+    public float distanciaAlProximoPuntoDeControl = 3;
 
     public int danoAtaque = 3; // Daño que hace el enemigo sobre el personaje.
+    
 
     private int vida; //Vida que tiene el enemigo.
+    private Rigidbody rb;
 
-
-    // Posición del jugador.
-    private Transform objetivo;
 
 	// Sobreescribimos la clase de start de la superclase.
 	protected override void Start () {
-        //objetivo = GameObject.FindGameObjectsWithTag("Jugador").transform;
-        vida = Random.Range(100, 150);
-        seeker = GetComponent<Seeker>();
-        seeker.StartPath(transform.position, target.position, OnPathComplete);
+        // Conseguimos la referencia de la posición del jugador.
+        targetPosition = target.transform.position;
+        rb = GetComponent<Rigidbody>();
         base.Start();
 	}
 
-    public void OnPathComplete(Path p)
+    protected void Update()
+    {
+        // Cada frame se buscará la posición del objetivo.
+        seeker = GetComponent<Seeker>();
+        seeker.StartPath(transform.position, target.position, PathCompletado);
+    }
+
+    public void PathCompletado(Path p)
     {
         if (!p.error)
         {
             path = p;
-            currentIndex = 0;
+            // Resetamos el index actual.
+            indexActual = 0;
         }
     }
 
-    void FixedUpate()
+    public void FixedUpate()
     {
         if (path == null)
         {
+            // Si no tenemos path salimos.
             return;
         }
 
-        if (currentIndex >= path.vectorPath.Count)
+        if (indexActual >= path.vectorPath.Count)
         {
+            // Fin del trayecto.
             return;
         }
 
-        transform.position = path.vectorPath[currentIndex];
-        currentIndex++;
+        // Movimiento hacia el objetivo.
+        Vector3 dir = (path.vectorPath[indexActual] - transform.position).normalized;
+        dir *= velocidad * Time.fixedDeltaTime;
+        rb.AddForce(dir); 
+
+        // Si estamos cerca del próximo elemento del path procedeemos a buscar un nuevo index.
+        if (Vector3.Distance(transform.position, path.vectorPath[indexActual]) < distanciaAlProximoPuntoDeControl)
+        {
+            indexActual++;
+            return;
+        }
+
     }
 
-    // Función que mueve el enemigo hacia la base del jugador o en caso que se encuentre en rango, mueve el enemigo hacia el jugador.
-    //public void moverEnemigo(Base baseJugador)
-    //   {
-    //       float x = baseJugador.PosicionX;
-    //       float y = baseJugador.PosicionY;
-
-    //       // Pasamos como componente a Jugador, que es al que posiblemente nos encontremos.
-    //       //intentarMovimiento<Muro>(x, y);
-    //   }
-
-    //protected override void choqueConObjeto<T>(T componente)
-    //{
-    //    // Comprobado si el enemigo se ha chocado contra el jugador.
-    //    Jugador jugadorAtacado = componente as Jugador;
-
-    //    //jugadorAtacado.quitarVida(danoAtaque);
-    //}
-
-    // Comprueba que el jugador está en rango, si lo está perseguirle.
     private bool jugadorEnRango()
     {
         return true;
