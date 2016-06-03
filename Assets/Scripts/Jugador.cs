@@ -42,6 +42,7 @@ public class Jugador : Personaje{
         controlarBombas();
 
         disparar();
+        AstarPath.active.Scan();
     }
 
     #region INVENTARIO
