@@ -127,7 +127,7 @@ MonoBehaviour:
   delayBomba: 5
   radioBomba: 5
   danoBomba: 10
-  explosion: {fileID: 100006, guid: 6aea392f353e04156a230db0fba22230, type: 2}
+  explosion: {fileID: 100012, guid: bf2d0b8833ec1440d97c8a40024ea2fe, type: 2}
 --- !u!114 &11432748
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -192,6 +192,10 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1.6
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: explosion
+      value: 
+      objectReference: {fileID: 100012, guid: bf2d0b8833ec1440d97c8a40024ea2fe, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 118908}

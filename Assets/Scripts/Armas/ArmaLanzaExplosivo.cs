@@ -3,19 +3,17 @@ using System.Collections;
 
 public class ArmaLanzaExplosivo : ArmaBasica {
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
         puedeDisparar = true;
         camaraPrincipal = GameObject.Find("Main Camera").GetComponent<Camera>();
+        jugador = GameObject.Find("Jugador").transform.gameObject;
     }
-	
-	// Update is called once per frame
-	void Update () {
-        jugador = this.transform.parent.gameObject;
-        if (Input.GetKey(KeyCode.F))
-        {
-            disparar();
-        }
+
+    // Update is called once per frame
+    void Update()
+    {
         moverArma();
     }
 

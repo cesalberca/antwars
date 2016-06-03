@@ -11,17 +11,23 @@ public class ArmaLanzallamas : ArmaBasica
     {
         puedeDisparar = true;
         camaraPrincipal = GameObject.Find("Main Camera").GetComponent<Camera>();
+        jugador = GameObject.Find("Jugador").transform.gameObject;
     }
 
     // Update is called once per frame
     void Update()
     {
-        jugador = this.transform.parent.gameObject;
-        if (Input.GetKey(KeyCode.F))
+        moverArma();
+    }
+
+    bool controlarDisparo()
+    {
+        if (puedeDisparar)
         {
             disparar();
+            return true;
         }
-        moverArma();
+        else return false;
     }
 
     /// <summary>
