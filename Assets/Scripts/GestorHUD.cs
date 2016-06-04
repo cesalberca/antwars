@@ -32,8 +32,11 @@ public class GestorHUD : MonoBehaviour {
 
     public void refrescar()
     {
-        salud.text = "SALUD " + jugador.GetComponent<Jugador>().vida;
-        materiales.text = "MATERIALES " + jugador.GetComponent<Jugador>().almacenMateriales;
+        if(jugador!= null)
+        {
+            salud.text = "SALUD " + jugador.GetComponent<Jugador>().vida;
+            materiales.text = "MATERIALES " + jugador.GetComponent<Jugador>().almacenMateriales;
+        }
     }
 
     void mostrarBotones()

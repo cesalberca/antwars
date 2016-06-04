@@ -76,7 +76,7 @@ MonoBehaviour:
   velocidad: 0.05
   vida: 100
   camaraPrincipal: {fileID: 0}
-  distanciaInteraccion: 5
+  distanciaInteraccion: 3
   almacenMateriales: 1000
   velocidadPicar: 0.1
   almacenArmas:
