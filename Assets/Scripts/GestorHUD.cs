@@ -13,6 +13,8 @@ public class GestorHUD : MonoBehaviour {
     public List<Button> almacenBotones;
     public Text textoMuerte;
     public Text textoBase;
+    public Button reiniciar;
+    public Button menu;
 
     private bool estadoBotones;
     private int vida;
@@ -25,6 +27,7 @@ public class GestorHUD : MonoBehaviour {
 	void Update () {
         mostrarBotones();
         controlarMuerte();
+        refrescar();
     }
 
     public void refrescar()
@@ -67,6 +70,8 @@ public class GestorHUD : MonoBehaviour {
         if (vida <= 0)
         {
             textoMuerte.transform.gameObject.SetActive(true);
+            reiniciar.transform.gameObject.SetActive(true);
+            menu.transform.gameObject.SetActive(true);
         }
 
         //aqui va un if que comprueba que la vida de la base es mayor que 0
