@@ -16,7 +16,8 @@ public abstract class Personaje : MonoBehaviour {
         }
         if (!estaVivo())
         {
-            Destroy(this.gameObject);
+            this.gameObject.SetActive(false);
+            Destroy(this.gameObject, 5);
         }
     }
 

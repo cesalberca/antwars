@@ -8,10 +8,14 @@ public class GestorHUD : MonoBehaviour {
     public Text salud;
     public Text materiales;
     public GameObject jugador;
+    public GameObject baseOperaciones;
 
     public List<Button> almacenBotones;
+    public Text textoMuerte;
+    public Text textoBase;
 
     private bool estadoBotones;
+    private int vida;
 
     // Use this for initialization
     void Start () {
@@ -20,6 +24,7 @@ public class GestorHUD : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         mostrarBotones();
+        controlarMuerte();
     }
 
     public void refrescar()
@@ -54,5 +59,16 @@ public class GestorHUD : MonoBehaviour {
             almacenBotones[i].transform.gameObject.SetActive(estado);
             estadoBotones = estado;
         }
+    }
+
+    void controlarMuerte()
+    {
+        vida = jugador.GetComponent<Jugador>().vida;
+        if (vida <= 0)
+        {
+            textoMuerte.transform.gameObject.SetActive(true);
+        }
+
+        //aqui va un if que comprueba que la vida de la base es mayor que 0
     }
 }
