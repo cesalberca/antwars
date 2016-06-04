@@ -36,20 +36,6 @@ namespace Completed
 		
 		
 		//Update is called every frame.
-		void Update()
-		{
-            StartCoroutine(moverEnemigos());
-		}
-		
-        IEnumerator moverEnemigos()
-        {
-            for (int i = 0; i < enemigos.Count; i++)
-            {
-                //enemigos[i].moverEnemigo();
-                yield return new WaitForSeconds(enemigos[i].velocidad);
-            }
-        }
-
 	}
 }
 

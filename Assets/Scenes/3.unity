@@ -126,7 +126,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 499330, guid: 85c8eddfd50d9944a86310b38c8a218d, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 144110, guid: 85c8eddfd50d9944a86310b38c8a218d, type: 2}
       propertyPath: m_Name
@@ -280,11 +280,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 483232, guid: 29a7ccdf704bdc54babfc99df4571b88, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0.024
+      value: 10.38
       objectReference: {fileID: 0}
     - target: {fileID: 483232, guid: 29a7ccdf704bdc54babfc99df4571b88, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -2.069
+      value: -17.66
       objectReference: {fileID: 0}
     - target: {fileID: 483232, guid: 29a7ccdf704bdc54babfc99df4571b88, type: 2}
       propertyPath: m_LocalPosition.z
@@ -308,12 +308,16 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 483232, guid: 29a7ccdf704bdc54babfc99df4571b88, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 11414230, guid: 29a7ccdf704bdc54babfc99df4571b88, type: 2}
       propertyPath: target
       value: 
       objectReference: {fileID: 1913427617}
+    - target: {fileID: 11414230, guid: 29a7ccdf704bdc54babfc99df4571b88, type: 2}
+      propertyPath: speed
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 29a7ccdf704bdc54babfc99df4571b88, type: 2}
   m_IsPrefabParent: 0
@@ -331,7 +335,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 420278, guid: c978f126093797246a56686de074a757, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 13
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 420278, guid: c978f126093797246a56686de074a757, type: 2}
       propertyPath: m_LocalPosition.y
@@ -359,7 +363,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 420278, guid: c978f126093797246a56686de074a757, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11415624, guid: c978f126093797246a56686de074a757, type: 2}
       propertyPath: camaraPrincipal

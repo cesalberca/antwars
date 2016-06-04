@@ -1,94 +1,76 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System;
 using Pathfinding;
 
-public class Enemigo : Personaje {
+// Heredar de personaje
+public class Enemigo : MonoBehaviour
+{
 
-    // Elemento que se perseguirá
-    public Transform target;
-    // Posición del objetvio
-    public Vector3 targetPosition;
-    // A* para que busque su objetivo
-    Seeker seeker;
-    // Trayecto generado por el gráfico de A*.
-    Path path;
-    // Index actual.
-    private int indexActual = 0;
-    public float distanciaAlProximoPuntoDeControl = 3;
+    public Transform objetivo;
+    public Vector3 posicionObjetivo;
 
-    public int danoAtaque = 3; // Daño que hace el enemigo sobre el personaje.
-    
+    private Seeker seeker;
+    private CharacterController controlador;
 
-    private int vida; //Vida que tiene el enemigo.
-    private Rigidbody rb;
+    // El camino a recorrer
+    public Path path;
+
+    public float velocidad = 1;
+
+    // La máxima distancia al próximo "punto de control."
+    public float maximaDistanciaAtajo = 1;
+
+    // El punto hacia el que nos movemos.
+    private int puntoActual = 0;
 
 
-	// Sobreescribimos la clase de start de la superclase.
-	protected override void Start () {
-        // Conseguimos la referencia de la posición del jugador.
-        targetPosition = target.transform.position;
-        rb = GetComponent<Rigidbody>();
-        base.Start();
-	}
-
-    protected void Update()
+    public void Start()
     {
-        // Cada frame se buscará la posición del objetivo.
+        posicionObjetivo = objetivo.transform.position;
         seeker = GetComponent<Seeker>();
-        seeker.StartPath(transform.position, target.position, PathCompletado);
+        controlador = GetComponent<CharacterController>();
+
+        seeker.StartPath(transform.position, posicionObjetivo, OnPathComplete);
     }
 
-    public void PathCompletado(Path p)
+    public void Update()
+    {
+        posicionObjetivo = objetivo.transform.position;
+    }
+
+    public void OnPathComplete(Path p)
     {
         if (!p.error)
         {
             path = p;
-            // Resetamos el index actual.
-            indexActual = 0;
+            // Reseteamos el index actual.
+            puntoActual = 0;
         }
     }
 
-    public void FixedUpate()
+    public void FixedUpdate()
     {
         if (path == null)
         {
-            // Si no tenemos path salimos.
             return;
         }
 
-        if (indexActual >= path.vectorPath.Count)
+        if (puntoActual >= path.vectorPath.Count)
         {
-            // Fin del trayecto.
             return;
         }
 
-        // Movimiento hacia el objetivo.
-        Vector3 dir = (path.vectorPath[indexActual] - transform.position).normalized;
+        // Dirección al próximo punto
+        Vector3 dir = (path.vectorPath[puntoActual] - transform.position).normalized;
         dir *= velocidad * Time.fixedDeltaTime;
-        rb.AddForce(dir); 
+        controlador.Move(dir);
 
-        // Si estamos cerca del próximo elemento del path procedeemos a buscar un nuevo index.
-        if (Vector3.Distance(transform.position, path.vectorPath[indexActual]) < distanciaAlProximoPuntoDeControl)
+        // Comprobamos que estamos cerca del próximo punto.
+        if (Vector3.Distance(transform.position, path.vectorPath[puntoActual]) < maximaDistanciaAtajo)
         {
-            indexActual++;
+            puntoActual++;
             return;
         }
-
     }
 
-    private bool jugadorEnRango()
-    {
-        return true;
-    }
-
-    protected override void mover(Vector2 destino)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override void onCollisionEnter(Collision2D coll)
-    {
-        throw new NotImplementedException();
-    }
 }
