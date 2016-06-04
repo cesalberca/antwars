@@ -11,8 +11,8 @@ public class MenuPrincipal : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        StartCoroutine(mostrarCanvas(canvasNombres, false, 25));
-        StartCoroutine(mostrarCanvas(canvasPresentan, true, 25));
+        StartCoroutine(mostrarCanvas(canvasNombres, false, 20));
+        StartCoroutine(mostrarCanvas(canvasPresentan, true, 20));
         StartCoroutine(mostrarCanvas(canvasPresentan, false, 33.5f));
         StartCoroutine(mostrarCanvas(canvasMenu, true, 33.5f));
     }
@@ -29,6 +29,7 @@ public class MenuPrincipal : MonoBehaviour {
 
     public void cerrarJuego()
     {
+        UnityEditor.EditorApplication.isPlaying = false;
         Application.Quit();
     }
 

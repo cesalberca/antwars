@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class GestorHUD : MonoBehaviour {
 
@@ -78,5 +79,15 @@ public class GestorHUD : MonoBehaviour {
         }
 
         //aqui va un if que comprueba que la vida de la base es mayor que 0
+    }
+
+    public void irMenu()
+    {
+        SceneManager.LoadScene("menuPrincipal");
+    }
+
+    public void reiniciarMapa()
+    {
+        SceneManager.LoadScene("juegoPrincipal");
     }
 }
