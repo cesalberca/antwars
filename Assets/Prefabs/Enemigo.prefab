@@ -69,10 +69,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a88fb831d51eb4498e98248cff0eaf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  targetPosition: {x: 0, y: 0, z: 0}
-  speed: 1
-  nextWaypointDistance: 1
+  objetivo: {fileID: 0}
+  jugador: {fileID: 0}
+  posicionObjetivo: {x: 0, y: 0, z: 0}
+  velocidad: 1
+  rangoDeteccionEnemigo: 5
+  maximaDistanciaAtajo: 1
 --- !u!143 &14326926
 CharacterController:
   m_ObjectHideFlags: 1
