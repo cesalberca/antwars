@@ -72,8 +72,10 @@ MonoBehaviour:
   objetivo: {fileID: 0}
   jugador: {fileID: 0}
   posicionObjetivo: {x: 0, y: 0, z: 0}
+  baseJugador: {fileID: 0}
+  jugadorReferencia: {fileID: 0}
   velocidad: 1
-  rangoDeteccionEnemigo: 5
+  rangoDeteccionEnemigo: 15
   maximaDistanciaAtajo: 1
 --- !u!143 &14326926
 CharacterController:
