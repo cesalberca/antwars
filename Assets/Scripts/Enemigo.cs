@@ -10,6 +10,7 @@ public class Enemigo : MonoBehaviour
     public Transform jugador;
     public Vector3 posicionObjetivo;
     public Base baseJugador;
+    public Jugador jugadorReferencia;
 
     private Seeker seeker;
     private CharacterController controlador;
@@ -25,6 +26,7 @@ public class Enemigo : MonoBehaviour
     // El punto hacia el que nos movemos.
     private int puntoActual = 0;
     private int danioBase = 10;
+    private int danioJugador = 10;
 
 
     public void Start()
@@ -74,8 +76,16 @@ public class Enemigo : MonoBehaviour
             transform.LookAt(jugador.position);
             transform.Rotate(new Vector3(0, -90, 0), Space.Self);
 
-            // Nos movemos en su dirección
-            transform.Translate(new Vector3(velocidad * Time.deltaTime, 0, 0));
+            // Nos movemos en su dirección si la distancia con el jugador es mayor que uno, si no, le quitamos vida al jugador.
+            if (Vector3.Distance(transform.position, jugador.position) > 1f)
+            {
+                transform.Translate(new Vector3(velocidad * Time.deltaTime, 0, 0));
+            }
+            else
+            {
+                jugadorReferencia.bajarVida(danioJugador);
+                Destroy(this.gameObject);
+            }
         } else
         {
             // Dirección al próximo punto
