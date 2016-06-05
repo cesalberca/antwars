@@ -13,6 +13,7 @@ namespace Completed
         public static GestorJuego instance = null;
         // Array de enemigos
         private List<Enemigo> enemigos;
+        private int puntuacion = 20;
 		
 		void Awake()
 		{
@@ -24,6 +25,7 @@ namespace Completed
             {
                 Destroy(gameObject);
             }
+
             DontDestroyOnLoad(gameObject);
             enemigos = new List<Enemigo>();
             iniciarJuego();
@@ -32,10 +34,17 @@ namespace Completed
         void iniciarJuego()
         {
             enemigos.Clear();
+            //int numeroEnemigos = (int)Mathf.Log(puntuacion, 2f);
+            int numeroEnemigos = 10;
+
+            for (int i = 0; i < numeroEnemigos; i++)
+            {
+                Debug.Log("hola");
+                enemigos.Add(new Enemigo());
+                Instantiate(enemigos[i], new Vector3 (15, -15, 0), Quaternion.identity);
+            }
+           
         }
-		
-		
-		//Update is called every frame.
-	}
+    }
 }
 
