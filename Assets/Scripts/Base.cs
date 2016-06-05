@@ -5,6 +5,7 @@ public class Base : MonoBehaviour {
 
     private float posicionX;
     private float posicionY;
+    public int vida = 100;
 
 	// Use this for initialization
 	void Start () {
@@ -22,5 +23,16 @@ public class Base : MonoBehaviour {
     {
         get { return posicionY; }
         set { posicionY = value; }
+    }
+
+    public void bajarVida(int danio)
+    {
+        if (vida > 0)
+        {
+            this.vida = this.vida - danio;
+        } else
+        {
+            Destroy(this.gameObject);
+        }
     }
 }
