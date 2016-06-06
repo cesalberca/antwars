@@ -443,6 +443,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7d59e4dfb9c9404b9471de0c983feac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemigos:
+  - {fileID: 173542, guid: 29a7ccdf704bdc54babfc99df4571b88, type: 2}
 --- !u!4 &1513164006 stripped
 Transform:
   m_PrefabParentObject: {fileID: 422344, guid: cd8f406b7852779409da42cc40bcbb86, type: 2}
@@ -503,6 +505,10 @@ Prefab:
     - target: {fileID: 11491872, guid: 15d2b606d530bac4eb5ca0f38057c4fe, type: 2}
       propertyPath: "tama\xF1oBase"
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 11491872, guid: 15d2b606d530bac4eb5ca0f38057c4fe, type: 2}
+      propertyPath: porcientoCavernas
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 15d2b606d530bac4eb5ca0f38057c4fe, type: 2}

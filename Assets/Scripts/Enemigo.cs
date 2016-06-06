@@ -31,16 +31,14 @@ public class Enemigo : MonoBehaviour
 
     public void Start()
     {
-        posicionObjetivo = objetivo.transform.position;
         seeker = GetComponent<Seeker>();
         controlador = GetComponent<CharacterController>();
-
-        seeker.StartPath(transform.position, posicionObjetivo, OnPathComplete);
-    }
-
-    public void Update()
-    {
+        objetivo = GameObject.Find("base").transform;
+        jugador = GameObject.Find("Jugador").transform;
+        baseJugador = GameObject.Find("base").GetComponent<Base>();
+        jugadorReferencia = GameObject.Find("Jugador").GetComponent<Jugador>();
         posicionObjetivo = objetivo.transform.position;
+        seeker.StartPath(transform.position, posicionObjetivo, OnPathComplete);
     }
 
     public void OnPathComplete(Path p)

@@ -12,7 +12,7 @@ namespace Completed
         // Instancia estático del GestorJuego para poder accederla desde otras clases.
         public static GestorJuego instance = null;
         // Array de enemigos
-        private List<Enemigo> enemigos;
+        public List<GameObject> enemigos;
         private int puntuacion = 20;
 		
 		void Awake()
@@ -27,21 +27,21 @@ namespace Completed
             }
 
             DontDestroyOnLoad(gameObject);
-            enemigos = new List<Enemigo>();
+            //enemigos = new List<GameObject>();
             iniciarJuego();
 		}
 
         void iniciarJuego()
         {
-            enemigos.Clear();
+            //enemigos.Clear();
             //int numeroEnemigos = (int)Mathf.Log(puntuacion, 2f);
             int numeroEnemigos = 10;
 
             for (int i = 0; i < numeroEnemigos; i++)
             {
                 Debug.Log("hola");
-                enemigos.Add(new Enemigo());
-                Instantiate(enemigos[i], new Vector3 (15, -15, 0), Quaternion.identity);
+                //enemigos.Add();
+                Instantiate(enemigos[0], new Vector3 (i*5, -5*i, 0), Quaternion.identity);
             }
            
         }
