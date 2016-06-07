@@ -814,7 +814,7 @@ public class AstarPath : MonoBehaviour {
 		}
 
 		if (active.logPathResults != PathLog.None && active.logPathResults != PathLog.OnlyErrors) {
-			Debug.Log(s);
+			//Debug.Log(s);
 		}
 	}
 
