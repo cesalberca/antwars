@@ -108,12 +108,12 @@ public class Enemigo : MonoBehaviour
         transform.Translate(new Vector3(velocidad * Time.deltaTime, 0, 0));
     }
 
-    void OnCollisionEnter(Collision colision)
+    void OnCollisionEnter2D(Collision2D coll)
     {
-        Debug.Log(colision.gameObject.name);
+        Debug.Log(coll.gameObject.name);
         //jugador.bajarVida(danioJugador);
         //Destroy(this.gameObject);
-}
+    }
 
     /// <summary>
     /// Comprueba si el jugador está dentro de un radio determinado.

@@ -373,8 +373,10 @@ public class Jugador : Personaje
                 //nuevoCubo.AddComponent<Muro>();
                 //nuevoCubo.tag = "BloqueConstruido";
                 nuevoCubo.AddComponent<BoxCollider2D>();
+                nuevoCubo.layer = 9;
                 this.almacenMateriales = this.almacenMateriales - nuevoCubo.GetComponent<Muro>().costConstruccion;
                 HUD.GetComponent<GestorHUD>().refrescar();
+                AstarPath.active.Scan();
                 return nuevoCubo;
             }
             else return null;
