@@ -1,33 +1,29 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ArmaBasica : MonoBehaviour {
+/// <summary>
+/// El arma basica del juego, todas las armas heredan de ella
+/// </summary>
+public class ArmaBasica : MonoBehaviour
+{
 
-    //public int id;
-    public int dano;
-    public int potencia;
-    //public int amplitud;
-    public int gastoDisparo;
-    public float velocidadDisparo;
-    public Camera camaraPrincipal;
-    public GameObject bala;
-    public GameObject jugador;
+    public int dano;                    //el daño que hace el arma
+    public int potencia;                //la potencia con la que sale la bala del arma
+    public int gastoDisparo;            //el gasto de materiales de disparar el arma
+    public float velocidadDisparo;      //la velocidad con la que puede disparar el arma
+    public Camera camaraPrincipal;      //la camara principal
+    public GameObject bala;             //la bala que el arma dispara
+    public GameObject jugador;          //el jugador que empuña el arma
 
-    //como se hará para que algo sea publico pero no se pase por parametro?
-    public bool puedeDisparar;
+    public bool puedeDisparar;          //controla que el arma o no pueda disparar
 
     void Start()
     {
-        //Debug.Log("HOLA");
-        //camaraPrincipal = GameObject.Find("Main Camera").GetComponent<Camera>();
         jugador = this.transform.parent.gameObject;
     }
-    /// <summary>
-    /// cambiar para que sus hijos tengas distintos tipos de disparo
-    /// </summary>
 
     /// <summary>
-    /// 
+    /// captura y devuelve la posicion del raton en el mundo
     /// </summary>
     /// <returns>la posicion del raton en el mundo</returns>
     public Vector3 getMousePosition()
@@ -37,7 +33,7 @@ public class ArmaBasica : MonoBehaviour {
     }
 
     /// <summary>
-    /// 
+    /// Calcula un vector entre el arma y la posicion del raton
     /// </summary>
     /// <returns>el vector entre el raton y el jugador</returns>
     public Vector2 getDireccionDisparo()
@@ -51,10 +47,13 @@ public class ArmaBasica : MonoBehaviour {
     /// </summary>
     public void moverArma()
     {
-        this.transform.position = new Vector2(jugador.transform.position.x, jugador.transform.position.y) + (getDireccionDisparo() / getDireccionDisparo().magnitude)/3;
+        this.transform.position = new Vector2(jugador.transform.position.x, jugador.transform.position.y) + (getDireccionDisparo() / getDireccionDisparo().magnitude) / 3;
         rotarArma();
     }
 
+    /// <summary>
+    /// rota el arma para que apunte donde esta el puntero
+    /// </summary>
     public void rotarArma()
     {
         Vector3 diff = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;

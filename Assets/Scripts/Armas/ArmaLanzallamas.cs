@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// el arma lanzallamas
+/// </summary>
 public class ArmaLanzallamas : ArmaBasica
 {
-
-    private Quaternion lookRotation;
-
     // Use this for initialization
     void Start()
     {
@@ -20,6 +20,10 @@ public class ArmaLanzallamas : ArmaBasica
         moverArma();
     }
 
+    /// <summary>
+    /// Controla que se pueda disparar o no
+    /// </summary>
+    /// <returns>si se puede disparar o no</returns>
     bool controlarDisparo()
     {
         if (puedeDisparar)
@@ -40,13 +44,8 @@ public class ArmaLanzallamas : ArmaBasica
             puedeDisparar = false;
             GameObject nuevaBala;
             nuevaBala = Instantiate(bala, new Vector2(this.transform.position.x, this.transform.position.y) + (getDireccionDisparo() / getDireccionDisparo().magnitude) / 2, Quaternion.identity) as GameObject;
-            //nuevaBala.AddComponent<BoxCollider2D>();
-            //nuevaBala.AddComponent<Rigidbody2D>();
-            //nuevaBala.GetComponent<Rigidbody2D>().gravityScale = 0;
-
             nuevaBala.transform.LookAt(getMousePosition());
             nuevaBala.transform.parent = this.transform;
-            //nuevaBala.transform.localScale = new Vector3(1, 1, 1);
             StartCoroutine(calcularRatio(velocidadDisparo));
             Destroy(nuevaBala.transform.gameObject, 10);
         }

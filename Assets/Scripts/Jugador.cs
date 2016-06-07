@@ -3,50 +3,53 @@ using System.Collections;
 using System;
 using System.Collections.Generic;
 
-public class Jugador : Personaje{
+/// <summary>
+/// el jugador que controlamos en el juego
+/// </summary>
+public class Jugador : Personaje
+{
 
     //cosas a pasar
     public Camera camaraPrincipal;                          //la camara principal que se quiere que siga al personaje
     public int distanciaInteraccion = 5;                    //la distancia a la que se pueden interactuar
-    public int almacenMateriales = 100;                    //la cantidad de materiales que tiene el jugador
-    public float velocidadPicar = 0.5f;
+    public int almacenMateriales = 100;                     //la cantidad de materiales que tiene el jugador
+    public float velocidadPicar = 0.5f;                     //la velocidad que tarda el jugador en poder picar
     public List<GameObject> almacenArmas;                   //la lista de armas que puede equipar
     public List<GameObject> almacenMuros;                   //la lista de todos los tipos de muros que puede colocar
-    public GameObject HUD;
+    public GameObject HUD;                                  //el Heads Up Display del jugador
 
     //cosas a crear
-    private GameObject armaSeleccionada;
-    private int indexSeleccionado = 0;
-    private bool puedePicar = true;
+    private GameObject armaSeleccionada;                    //el arma seleccionada actualmente
+    private int indexSeleccionado = 0;                      //el indice del arma seleccionada
+    private bool puedePicar = true;                         //variable controladora que posibilita poder picar o no
 
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         HUD.GetComponent<GestorHUD>().refrescar();
     }
-	
-	// Update is called once per frame
-	void Update () {
-        mover(new Vector2());
-        //mover2();
 
+    // Update is called once per frame
+    void Update()
+    {
+        mover(new Vector2());
         elegirArma();
         cambiarArma();
-
         resetImpulso();
         controlarMirada();
-
         picar();
         construir();
-
         controlarBombas();
-
         disparar();
         AstarPath.active.Scan();
     }
 
     #region INVENTARIO
 
+    /// <summary>
+    /// Cambia de arma con la rueda del raton
+    /// </summary>
     void cambiarArma()
     {
         if (Input.GetAxis("Mouse ScrollWheel") > 0)
@@ -56,7 +59,8 @@ public class Jugador : Personaje{
                 elegirArmaPorIndex(indexSeleccionado - 1);
                 aparecerArma();
             }
-        } else if (Input.GetAxis("Mouse ScrollWheel") < 0)
+        }
+        else if (Input.GetAxis("Mouse ScrollWheel") < 0)
         {
             if (indexSeleccionado < almacenArmas.Count - 1)
             {
@@ -66,6 +70,9 @@ public class Jugador : Personaje{
         }
     }
 
+    /// <summary>
+    /// controla el disparar del jugador, si tiene suficientes materiales dispara y le quita los materiales necesarios
+    /// </summary>
     void disparar()
     {
         if (Input.GetMouseButton(0) && this.almacenMateriales >= armaSeleccionada.GetComponent<ArmaBasica>().gastoDisparo)
@@ -115,6 +122,10 @@ public class Jugador : Personaje{
         }
     }
 
+    /// <summary>
+    /// Elige el armaseleccionada segun el boton pulsado en el HUD
+    /// </summary>
+    /// <param name="indexArma">el indice del arma que se quiere elegir</param>
     public void elegirArmaBoton(int indexArma)
     {
         elegirArmaPorIndex(indexArma);
@@ -155,40 +166,43 @@ public class Jugador : Personaje{
     #endregion
 
     #region MOVIMIENTO
-        /// <summary>
-        /// modo cutre para mover, deberiamos cambiarlo
-        /// </summary>
-        /// <param name="destino"></param>
-        protected override void mover(Vector2 destino)
+    /// <summary>
+    /// mueve al jugador
+    /// </summary>
+    /// <param name="destino">La posicion a la que se quiere ir</param>
+    protected override void mover(Vector2 destino)
+    {
+        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
-            if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
-            {
-                Vector3 position = this.transform.position;
-                position.x -= velocidad;
-                //transform.localRotation = Quaternion.Euler(0, 180, 0);
-                this.transform.position = position;
-            }
-            if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
-            {
-                Vector3 position = this.transform.position;
-                position.x += velocidad;
-               // transform.localRotation = Quaternion.Euler(0, 0, 0);
-                this.transform.position = position;
-            }
-            if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
-            {
-                Vector3 position = this.transform.position;
-                position.y += velocidad;
-                this.transform.position = position;
-            }
-            if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
-            {
-                Vector3 position = this.transform.position;
-                position.y -= velocidad;
-                this.transform.position = position;
-            }
+            Vector3 position = this.transform.position;
+            position.x -= velocidad;
+            //transform.localRotation = Quaternion.Euler(0, 180, 0);
+            this.transform.position = position;
         }
+        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+        {
+            Vector3 position = this.transform.position;
+            position.x += velocidad;
+            // transform.localRotation = Quaternion.Euler(0, 0, 0);
+            this.transform.position = position;
+        }
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+        {
+            Vector3 position = this.transform.position;
+            position.y += velocidad;
+            this.transform.position = position;
+        }
+        if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
+        {
+            Vector3 position = this.transform.position;
+            position.y -= velocidad;
+            this.transform.position = position;
+        }
+    }
 
+    /// <summary>
+    /// modo secundario de movimiento, no implementado
+    /// </summary>
     protected void mover2()
     {
         float movex;
@@ -197,11 +211,12 @@ public class Jugador : Personaje{
         if (Input.GetKey(KeyCode.A))
         {
             movex = -1;
-        }  
+        }
         else if (Input.GetKey(KeyCode.D))
         {
             movex = 1;
-        } else
+        }
+        else
         {
             movex = 0;
         }
@@ -212,19 +227,24 @@ public class Jugador : Personaje{
         else if (Input.GetKey(KeyCode.S))
         {
             movey = -1;
-        } else
+        }
+        else
         {
             movey = 0;
         }
         this.GetComponent<Rigidbody2D>().velocity = new Vector2(movex * velocidad, movey * velocidad);
     }
 
+    /// <summary>
+    /// Controla que el jugador siempre mire a la posicion del raton
+    /// </summary>
     public void controlarMirada()
     {
-        if(getMousePosition().x > this.transform.position.x)
+        if (getMousePosition().x > this.transform.position.x)
         {
             transform.localRotation = Quaternion.Euler(0, 0, 0);
-        } else
+        }
+        else
         {
             transform.localRotation = Quaternion.Euler(0, 180, 0);
         }
@@ -237,45 +257,50 @@ public class Jugador : Personaje{
     /// </summary>
     /// <returns>El objeto debajo de la posicion del raton</returns>
     GameObject seleccionarGameObjectMouse()
+    {
+        RaycastHit2D hit = Physics2D.Raycast(new Vector2(camaraPrincipal.ScreenToWorldPoint(Input.mousePosition).x, camaraPrincipal.ScreenToWorldPoint(Input.mousePosition).y), Vector2.zero, 0f);
+        if (hit)
         {
-            RaycastHit2D hit = Physics2D.Raycast(new Vector2(camaraPrincipal.ScreenToWorldPoint(Input.mousePosition).x, camaraPrincipal.ScreenToWorldPoint(Input.mousePosition).y), Vector2.zero, 0f);
-            if (hit)
-            {
-                return hit.transform.gameObject;
-            }
-            else return null;
+            return hit.transform.gameObject;
         }
+        else return null;
+    }
 
-        /// <summary>
-        /// devuelve la distancia entre el personaje y el GameObject pasado como parametro
-        /// </summary>
-        /// <param name="jugador"></param>
-        /// <returns>La distancia entre el personaje y el GameObject</returns>
-        float getDistanciaMouseObject(GameObject objeto)
-        {
-            float distancia = Vector2.Distance(new Vector2(camaraPrincipal.ScreenToWorldPoint(Input.mousePosition).x, camaraPrincipal.ScreenToWorldPoint(Input.mousePosition).y), new Vector2(objeto.transform.position.x, objeto.transform.position.y));
-            return distancia;
-        }
+    /// <summary>
+    /// devuelve la distancia entre el personaje y el GameObject pasado como parametro
+    /// </summary>
+    /// <param name="jugador"></param>
+    /// <returns>La distancia entre el personaje y el GameObject</returns>
+    float getDistanciaMouseObject(GameObject objeto)
+    {
+        float distancia = Vector2.Distance(new Vector2(camaraPrincipal.ScreenToWorldPoint(Input.mousePosition).x, camaraPrincipal.ScreenToWorldPoint(Input.mousePosition).y), new Vector2(objeto.transform.position.x, objeto.transform.position.y));
+        return distancia;
+    }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns>la posicion del raton en el mundo</returns>
-        private Vector3 getMousePosition()
-        {
-            Vector3 mousePos = new Vector2(camaraPrincipal.ScreenToWorldPoint(Input.mousePosition).x, camaraPrincipal.ScreenToWorldPoint(Input.mousePosition).y);
-            return mousePos;
-        }
+    /// <summary>
+    /// Recoge la posicion del raton en el mundo y la devuelve
+    /// </summary>
+    /// <returns>la posicion del raton en el mundo</returns>
+    private Vector3 getMousePosition()
+    {
+        Vector3 mousePos = new Vector2(camaraPrincipal.ScreenToWorldPoint(Input.mousePosition).x, camaraPrincipal.ScreenToWorldPoint(Input.mousePosition).y);
+        return mousePos;
+    }
 
-        /// <summary>
-        /// quita el impulso acumulado del objeto
-        /// </summary>
-        void resetImpulso()
-        {
-            this.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
-            this.GetComponent<Rigidbody2D>().angularVelocity = 0;
-        }
+    /// <summary>
+    /// quita el impulso acumulado del objeto
+    /// </summary>
+    void resetImpulso()
+    {
+        this.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+        this.GetComponent<Rigidbody2D>().angularVelocity = 0;
+    }
 
+    /// <summary>
+    /// controla del delay de picar
+    /// </summary>
+    /// <param name="delayTime"></param>
+    /// <returns></returns>
     public IEnumerator delayPicar(float delayTime)
     {
         yield return new WaitForSeconds(delayTime);
@@ -285,6 +310,9 @@ public class Jugador : Personaje{
 
     #region FEATURES
 
+    /// <summary>
+    /// controla el picar del jugador
+    /// </summary>
     void picar()
     {
         if (Input.GetMouseButton(1))
@@ -293,6 +321,9 @@ public class Jugador : Personaje{
         }
     }
 
+    /// <summary>
+    /// controla el construir del jugador
+    /// </summary>
     void construir()
     {
         if (Input.GetMouseButtonDown(2))
@@ -352,6 +383,9 @@ public class Jugador : Personaje{
 
     }
 
+    /// <summary>
+    /// controla el colocar bombas del jugador
+    /// </summary>
     void controlarBombas()
     {
         if (Input.GetMouseButton(0) && this.almacenMateriales >= armaSeleccionada.GetComponent<ArmaBasica>().gastoDisparo)

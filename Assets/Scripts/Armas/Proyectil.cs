@@ -1,22 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// el proyectil basico que disparan las armaPistola
+/// </summary>
 public class Proyectil : MonoBehaviour
 {
-    public int dano = 1;
-    //public AudioClip choque;
-    // Use this for initialization
-    void Start()
-    {
+    public int dano;        //el daño del proyectil
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
+    /// <summary>
+    /// controla que cuando se choque con un muro le baje la vida o si es con un enemigo le baje la vida
+    /// </summary>
+    /// <param name="coll">la collision que ha ocurrido</param>
     void OnCollisionEnter2D(Collision2D coll)
     {
         if (coll.transform.gameObject.GetComponent<Muro>())

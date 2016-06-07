@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// un tipo de arma que dispara municion explosiva
+/// </summary>
 public class ArmaLanzaExplosivo : ArmaBasica {
 
     // Use this for initialization
@@ -31,7 +34,6 @@ public class ArmaLanzaExplosivo : ArmaBasica {
             nuevaBala.AddComponent<Rigidbody2D>();
             nuevaBala.GetComponent<Rigidbody2D>().gravityScale = 0;
             nuevaBala.GetComponent<Rigidbody2D>().AddRelativeForce((getDireccionDisparo() / getDireccionDisparo().magnitude) * potencia);
-            //nuevaBala.tag = "BloqueConstruido";
             nuevaBala.GetComponent<BoxCollider2D>().size = new Vector2(0.3f, 0.3f);
             nuevaBala.transform.localScale = new Vector3(1, 1, 1);
             StartCoroutine(calcularRatio(velocidadDisparo));

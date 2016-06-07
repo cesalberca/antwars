@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// un tipo de arma a melee que hace daño cada vez que colisiona
+/// </summary>
 public class ArmaMelee : ArmaBasica {
 
 	// Use this for initialization

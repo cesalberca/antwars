@@ -1,6 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// un intento de hacer una escopeta
+/// No pudo ser terminado por falta de conocimientos de vectores relativos
+/// muchas de las funciones estan deprecated y no deberian ser usadas
+/// </summary>
 public class ArmaEscopeta : ArmaBasica
 {
 

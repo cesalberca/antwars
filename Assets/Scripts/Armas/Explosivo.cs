@@ -1,29 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// Contiene funciones que convierten al gameObject al que tenga el explosivo como atributo a una bomba
+/// </summary>
 public class Explosivo : ArmaBasica
 {
-    public int delayBomba;
-    public int radioBomba;
-    public int danoBomba;
-    //public bool esBomba;    
-    public GameObject explosion;
-	// Use this for initialization
-	void Start () {
-    }
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    public int delayBomba;              //el delay que tarda la bomba en explotar
+    public int radioBomba;              //el radio de la explosion en la que la bomba tendra efecto
+    public int danoBomba;               //el daño de la bomba 
+    public GameObject explosion;        //el efecto de la explosion
 
     void disparar() {
-        //Explosivo nuevaBomba = this.GetComponent<Explosivo>();
-        //colocarBomba(nuevaBomba.delayBomba, nuevaBomba.radioBomba);
     }
 
     /// <summary>
-    /// Destruye todos los objetos en el area pasada por parametro
+    /// Hace daño a todos los objetos en el area pasada por parametro
     /// </summary>
     /// <param name="bomba">El GameObject bomba creado anteriormente</param>
     /// <param name="delayTime">El tiempo de delay entre la llamada de la funcion y la detonacion de la bomba</param>
@@ -50,9 +42,12 @@ public class Explosivo : ArmaBasica
         }
     }
 
+    /// <summary>
+    /// si la bomba se choca con algo despues de haber sido colocada, explota
+    /// </summary>
+    /// <param name="coll">la collision</param>
     public void OnCollisionEnter2D(Collision2D coll)
     {
-        Debug.Log("ha colisionado");
         StartCoroutine(detonarBomba(this.transform.gameObject, 0, radioBomba));
     }
 }
