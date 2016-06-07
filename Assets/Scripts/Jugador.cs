@@ -23,7 +23,6 @@ public class Jugador : Personaje
     private int indexSeleccionado = 0;                      //el indice del arma seleccionada
     private bool puedePicar = true;                         //variable controladora que posibilita poder picar o no
 
-
     // Use this for initialization
     void Start()
     {
