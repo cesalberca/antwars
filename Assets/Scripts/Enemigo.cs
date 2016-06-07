@@ -73,21 +73,8 @@ public class Enemigo : MonoBehaviour
         // Si estamos cerca del jugador seguirle a él.
         if (dentroRadioJugador())
         {
+            perseguirJugador();
             haSeguidoJugador = true;
-            // Miramos al jugador.
-            transform.LookAt(posicionJugador.position);
-            transform.Rotate(new Vector3(0, -90, 0), Space.Self);
-
-            // Nos movemos en su dirección si la distancia con el jugador es mayor que uno, si no, le quitamos vida al jugador.
-            if (Vector3.Distance(transform.position, posicionJugador.position) > 1f)
-            {
-                transform.Translate(new Vector3(velocidad * Time.deltaTime, 0, 0));
-            }
-            else
-            {
-                jugador.bajarVida(danioJugador);
-                Destroy(this.gameObject);
-            }
         } else
         {
             // Si ha seguido al jugador en algún momento, recalculamos la ruta.
@@ -111,6 +98,22 @@ public class Enemigo : MonoBehaviour
             }
         }
     }
+
+    void perseguirJugador()
+    {
+        transform.LookAt(posicionJugador.position);
+        transform.Rotate(new Vector3(0, -90, 0), Space.Self);
+
+        // Nos movemos en su dirección si la distancia con el jugador es mayor que uno, si no, le quitamos vida al jugador.
+        transform.Translate(new Vector3(velocidad * Time.deltaTime, 0, 0));
+    }
+
+    void OnCollisionEnter(Collision colision)
+    {
+        Debug.Log(colision.gameObject.name);
+        //jugador.bajarVida(danioJugador);
+        //Destroy(this.gameObject);
+}
 
     /// <summary>
     /// Comprueba si el jugador está dentro de un radio determinado.
