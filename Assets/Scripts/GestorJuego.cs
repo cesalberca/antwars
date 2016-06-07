@@ -39,7 +39,6 @@ namespace Completed
 
             for (int i = 0; i < numeroEnemigos; i++)
             {
-                Debug.Log("hola");
                 //enemigos.Add();
                 Instantiate(enemigos[0], new Vector3 (i*5, -5*i, 0), Quaternion.identity);
             }
