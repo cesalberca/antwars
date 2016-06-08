@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<sim-project version="9.2" multi-file="no">
+  <meta>
+    <name>AntWars</name>
+    <authors> Vicente Rayo Sánchez</authors>
+    <description>Diagrama de clases del generador del Mapa y el Muro</description>
+  </meta>
+  <counters models="1">
+    <entity-names>
+      <counter>
+        <item-type type="UmlClass" />
+        <value>3</value>
+      </counter>
+    </entity-names>
+    <entity-ids>
+      <counter>
+        <item-type type="UmlClass" />
+        <value>4</value>
+      </counter>
+      <counter>
+        <item-type type="AbstractElementGroup" />
+        <value>9</value>
+      </counter>
+    </entity-ids>
+    <diagrams>
+      <counter>
+        <type>SoftwareIdeasModeler.Core.Diagrams.UmlDiagrams.UmlClassDiagram</type>
+        <value>1</value>
+      </counter>
+    </diagrams>
+    <fields>
+      <counter>
+        <type>SoftwareIdeasModeler.Core.DiagramItems.Fields.AttributeField</type>
+        <value>7</value>
+      </counter>
+      <counter>
+        <type>SoftwareIdeasModeler.Core.DiagramItems.Fields.OperationField</type>
+        <value>3</value>
+      </counter>
+    </fields>
+  </counters>
+  <alias-groups />
+  <management>
+    <persons>
+      <person id="P51c1383433064ef4ae2766cd0b10f034">
+        <first-name />
+        <last-name />
+        <role />
+        <e-mail />
+        <phone-number />
+        <description />
+        <color>#00000000</color>
+      </person>
+    </persons>
+    <tasks />
+    <requirements />
+    <issues />
+    <to-dos />
+  </management>
+  <glossary />
+  <types>
+    <type-sets>
+      <type-set file="UmlTypes.xml" />
+    </type-sets>
+    <custom-types>
+      <type id="Float" tid="" name="Float" description="" nullable="false" />
+    </custom-types>
+  </types>
+  <filters />
+  <items />
+  <models>
+    <model id="pf0eedeb7c31d41fd835738065b690b8f_332346967" name="Model 1" namespace="" order-index="1">
+      <meta>
+        <authors>
+          <author> </author>
+        </authors>
+        <description />
+        <creation-date>06/08/2016 18:46:45</creation-date>
+        <change-date>01/01/0001 00:00:00</change-date>
+        <revision-count>0</revision-count>
+        <version />
+      </meta>
+      <abstract-items />
+      <sub-models />
+      <diagram type="uml-class" id="pfee34ca8e9894d92a87f90a175aa5d89_669621866" name="ClassDiagram1" order-index="1" show-id="false" show-name="true" show-parent-name="false" show-stereotypes="true" show-tagged-values="false" show-template-parameters="true" show-fields="true" show-empty-compartments="true" show-attributes="true" show-attribute-visibility="true" show-operations="true" show-operation-parameters="true" show-operation-visibility="true" show-nullability="true" show-sequence-number="false" show-extension-points="false" show-relationship-texts="true" show-description="false" show-field-description="false" auto-routed-paths="false">
+        <style>
+          <background-color index="1" color="#FFFFFFFF" />
+          <background-color index="2" color="#FFFFFFFF" />
+          <background-type type="solid" />
+        </style>
+        <meta>
+          <authors>
+            <author> </author>
+          </authors>
+          <description />
+          <creation-date>06/08/2016 18:46:45</creation-date>
+          <change-date>06/08/2016 18:50:48</change-date>
+          <revision-count>0</revision-count>
+          <version />
+        </meta>
+        <abstract-items>
+          <item id="di381312610622843188" cid="C001" type="class" name="Muro" style-class="" visibility="package" change-tracking-state="added" creator="P51c1383433064ef4ae2766cd0b10f034" creation-date="06/08/2016 18:46:50">
+            <style class="default" />
+            <attributes>
+              <attribute id="ad93d5780e30642cab50b0162036ab3b4187" cid="AT001" name="posicionX" type="Float" type-id="Float" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a76f3d05959b9411cbc145086fd6137ce323" cid="AT002" name="posicionY" type="Float" type-id="Float" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a04950577dc2741afb558166bb9035b14686" cid="AT003" name="vidaMuro" type="Integer" type-id="Uml.Integer" visibility="private">
+                <style class="default" />
+              </attribute>
+              <attribute id="a61a3e90141da4cc0a65286474b32a952735" cid="AT004" name="costConstruccion" type="Integer" type-id="Uml.Integer" visibility="private">
+                <style class="default" />
+              </attribute>
+            </attributes>
+            <operations>
+              <operation id="o8f22a66744bb4312950b9ceaf11d8db4785" cid="OP001" name="checkVida" type="Boolean" type-id="Uml.Boolean" visibility="public">
+                <style class="default" />
+                <source-codes>
+                  <source-code language="ActionScript" />
+                </source-codes>
+              </operation>
+              <operation id="ofc8c2cc90d9549a6835d0b0bf746ebc698" cid="OP002" name="bajarVida" type="" type-id="" visibility="public">
+                <style class="default" />
+                <parameters>
+                  <parameter id="pb62a4123fb16449dbe17a92435deed9b" name="danio " type="Integer" type-id="Uml.Integer" />
+                </parameters>
+                <source-codes>
+                  <source-code language="ActionScript" />
+                </source-codes>
+              </operation>
+            </operations>
+            <source-codes>
+              <source-code language="ActionScript" />
+            </source-codes>
+          </item>
+          <item id="di807551929420854841" cid="C002" type="class" name="Mapa" style-class="" visibility="package" change-tracking-state="added" creator="P51c1383433064ef4ae2766cd0b10f034" creation-date="06/08/2016 18:50:43">
+            <style class="default" />
+            <attributes>
+              <attribute id="a20bbbe6b5ac64c588c607fbaa0535be4175" cid="AT005" name="muro" type="" type-id="" visibility="public">
+                <style class="default" />
+              </attribute>
+              <attribute id="ac3f1cb1d1f634844a3f857ae01d06290428" cid="AT006" name="fondo" type="" type-id="" visibility="public">
+                <style class="default" />
+              </attribute>
+            </attributes>
+            <source-codes>
+              <source-code language="ActionScript" />
+            </source-codes>
+          </item>
+        </abstract-items>
+        <layer name="Default" visible="true" enabled="true" locked="false">
+          <item id="di381312610622843188" iid="da5148fddc0145b4bf1abfe249fef64f" creation-date="06/08/2016 18:46:50" order-index="0" type="entity">
+            <layout ax="66" ay="149" awidth="230" aheight="227" x="66" y="149" width="230" height="227" />
+            <class />
+          </item>
+          <item id="di807551929420854841" iid="72413c4a6d294952ad37f125c785e46d" creation-date="06/08/2016 18:50:43" order-index="1" type="entity">
+            <layout ax="374" ay="149" awidth="140" aheight="160" x="374" y="149" width="140" height="160" />
+            <class />
+          </item>
+        </layer>
+      </diagram>
+    </model>
+  </models>
+  <documents />
+  <document-templates />
+</sim-project>
