@@ -1,0 +1,110 @@
+fileFormatVersion: 2
+guid: 39617e2c94a35cc4682dfdb61f1ba6b9
+timeCreated: 1465403223
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: houses_of_grigories_hometown_by_souliknight-d5syuwp_0
+    21300002: houses_of_grigories_hometown_by_souliknight-d5syuwp_1
+    21300004: houses_of_grigories_hometown_by_souliknight-d5syuwp_2
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: houses_of_grigories_hometown_by_souliknight-d5syuwp_0
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 5
+        width: 83
+        height: 106
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -23.5, y: 53}
+        - {x: -41.5, y: 33}
+        - {x: -41.5, y: -52}
+        - {x: -40.5, y: -53}
+        - {x: 41.5, y: -53}
+        - {x: 41.5, y: 34}
+        - {x: 33.5, y: 53}
+    - name: houses_of_grigories_hometown_by_souliknight-d5syuwp_1
+      rect:
+        serializedVersion: 2
+        x: 109
+        y: 5
+        width: 83
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -6.5, y: 60}
+        - {x: -41.5, y: 26}
+        - {x: -41.5, y: -60}
+        - {x: 41.5, y: -60}
+        - {x: 41.5, y: 25}
+        - {x: 6.5, y: 60}
+    - name: houses_of_grigories_hometown_by_souliknight-d5syuwp_2
+      rect:
+        serializedVersion: 2
+        x: 214
+        y: 5
+        width: 78
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -39, y: 46}
+        - {x: -39, y: -46}
+        - {x: 39, y: -46}
+        - {x: 39, y: 46}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

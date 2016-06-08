@@ -371,6 +371,10 @@ Prefab:
       propertyPath: tilesColumna
       value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 11491872, guid: 15d2b606d530bac4eb5ca0f38057c4fe, type: 2}
+      propertyPath: centroOperaciones
+      value: 
+      objectReference: {fileID: 135142, guid: 064d40382a96cb746b43cad9e18a0054, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 15d2b606d530bac4eb5ca0f38057c4fe, type: 2}
   m_IsPrefabParent: 0
