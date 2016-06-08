@@ -110,23 +110,19 @@ public class Enemigo : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D coll)
     {
-        Debug.Log(coll.gameObject.name);
-        //jugador.bajarVida(danioJugador);
-        //Destroy(this.gameObject);
-    }
+        Debug.Log(gameObject.name + "ha chocado con" + coll.gameObject.name);
+        if (coll.gameObject.name == "Jugador")
+        {
+            jugador.bajarVida(danioJugador);
+            Destroy(this.gameObject);
+        } else
+        {
+            // Cavar
+            Destroy(coll.gameObject);
+        }
+        
 
-    void OnControllerColliderHit(ControllerColliderHit hit)
-    {
-        Debug.Log(hit.gameObject.name);
     }
-
-    void OnTriggerEnter2D(Collider2D coll)
-    {
-        Debug.Log(coll.gameObject.name);
-        //jugador.bajarVida(danioJugador);
-        //Destroy(this.gameObject);
-    }
-
 
 
     /// <summary>

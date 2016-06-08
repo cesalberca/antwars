@@ -35,7 +35,7 @@ namespace Completed
         {
             //enemigos.Clear();
             //int numeroEnemigos = (int)Mathf.Log(puntuacion, 2f);
-            int numeroEnemigos = 2;
+            int numeroEnemigos = 1;
 
             for (int i = 0; i < numeroEnemigos; i++)
             {
