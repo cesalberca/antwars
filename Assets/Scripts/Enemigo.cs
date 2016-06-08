@@ -88,7 +88,7 @@ public class Enemigo : MonoBehaviour
             // Dirección al próximo punto
             Vector3 dir = (path.vectorPath[puntoActual] - transform.position).normalized;
             dir *= velocidad * Time.fixedDeltaTime;
-            controlador.Move(dir);
+            this.transform.Translate(dir);
 
             // Comprobamos que estamos cerca del próximo punto.
             if (Vector3.Distance(transform.position, path.vectorPath[puntoActual]) < maximaDistanciaAtajo)
@@ -114,6 +114,20 @@ public class Enemigo : MonoBehaviour
         //jugador.bajarVida(danioJugador);
         //Destroy(this.gameObject);
     }
+
+    void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        Debug.Log(hit.gameObject.name);
+    }
+
+    void OnTriggerEnter2D(Collider2D coll)
+    {
+        Debug.Log(coll.gameObject.name);
+        //jugador.bajarVida(danioJugador);
+        //Destroy(this.gameObject);
+    }
+
+
 
     /// <summary>
     /// Comprueba si el jugador está dentro de un radio determinado.

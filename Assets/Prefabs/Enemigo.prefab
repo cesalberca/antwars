@@ -11,7 +11,7 @@ GameObject:
   - 212: {fileID: 21281494}
   - 114: {fileID: 11414230}
   - 114: {fileID: 11404974}
-  - 143: {fileID: 14326926}
+  - 58: {fileID: 5804276}
   m_Layer: 0
   m_Name: Enemigo
   m_TagString: Untagged
@@ -31,6 +31,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!58 &5804276
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 173542}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.16
 --- !u!114 &11404974
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -77,23 +91,6 @@ MonoBehaviour:
   velocidad: 1
   rangoDeteccionEnemigo: 15
   maximaDistanciaAtajo: 1
---- !u!143 &14326926
-CharacterController:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 173542}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Height: 0.32
-  m_Radius: 0.16
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!212 &21281494
 SpriteRenderer:
   m_ObjectHideFlags: 1
