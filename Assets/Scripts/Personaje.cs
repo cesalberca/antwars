@@ -30,10 +30,6 @@ public abstract class Personaje : MonoBehaviour {
         else return false;
     }
 
-    // Es protected y virtual para que se pueda sobreescribir por sus hijas.
-    protected virtual void Start () {
-    }
-
     // Función que mueve al personaje.
     protected abstract void mover(Vector2 destino);
 

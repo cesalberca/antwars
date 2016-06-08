@@ -40,7 +40,7 @@ Rigidbody2D:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 173542}
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 1000
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -101,12 +101,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a88fb831d51eb4498e98248cff0eaf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  velocidad: 1
+  vida: 100
   posicionBase: {fileID: 0}
   posicionJugador: {fileID: 0}
   posicionObjetivo: {x: 0, y: 0, z: 0}
   baseJugador: {fileID: 0}
   jugador: {fileID: 0}
-  velocidad: 1
   rangoDeteccionEnemigo: 15
   maximaDistanciaAtajo: 1
 --- !u!212 &21281494

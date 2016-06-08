@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 using Pathfinding;
+using System;
 
 // Heredar de personaje
-public class Enemigo : MonoBehaviour
+public class Enemigo : Personaje
 {
     // Referencias a los objetos necesarios.
     public Transform posicionBase;
@@ -17,9 +18,8 @@ public class Enemigo : MonoBehaviour
 
     // El camino a recorrer
     public Path path;
-
     // Campos propios del objeto
-    public float velocidad = 1;
+    
     public float rangoDeteccionEnemigo = 5;
     // La máxima distancia al próximo "punto de control."
     public float maximaDistanciaAtajo = 1;
@@ -32,6 +32,8 @@ public class Enemigo : MonoBehaviour
 
     public void Start()
     {
+        this.velocidad = 1;
+
         seeker = GetComponent<Seeker>();
         controlador = GetComponent<CharacterController>();
         posicionBase = GameObject.Find("base").transform;
@@ -110,18 +112,27 @@ public class Enemigo : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D coll)
     {
-        Debug.Log(gameObject.name + "ha chocado con" + coll.gameObject.name);
+        Debug.Log(gameObject.name + " ha chocado con " + coll.gameObject.name);
         if (coll.gameObject.name == "Jugador")
         {
             jugador.bajarVida(danioJugador);
             Destroy(this.gameObject);
-        } else
+        } else if (coll.gameObject.name == "MunicionPistola(Clone)")
         {
-            // Cavar
+            bajarVida(20);
             Destroy(coll.gameObject);
         }
-        
+    }
 
+    void OnCollisionStay2D(Collision2D coll)
+    {
+        if (coll.gameObject.name == "spriteNormal(Clone)")
+        {
+            coll.gameObject.GetComponent<Muro>().bajarVida(1);
+            Debug.Log(coll.gameObject.GetComponent<Muro>().vidaMuro);
+            // Cavar
+            //Destroy(coll.gameObject);
+        }
     }
 
 
@@ -138,5 +149,15 @@ public class Enemigo : MonoBehaviour
         }
 
         return false;
+    }
+
+    protected override void mover(Vector2 destino)
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void onCollisionEnter(Collision2D coll)
+    {
+        throw new NotImplementedException();
     }
 }
