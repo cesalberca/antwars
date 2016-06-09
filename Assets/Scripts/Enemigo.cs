@@ -36,9 +36,9 @@ public class Enemigo : Personaje
 
         seeker = GetComponent<Seeker>();
         controlador = GetComponent<CharacterController>();
-        posicionBase = GameObject.Find("base").transform;
+        posicionBase = GameObject.Find("base(Clone)").transform;
         posicionJugador = GameObject.Find("Jugador").transform;
-        baseJugador = GameObject.Find("base").GetComponent<Base>();
+        baseJugador = GameObject.Find("base(Clone)").GetComponent<Base>();
         jugador = GameObject.Find("Jugador").GetComponent<Jugador>();
         posicionObjetivo = posicionBase.transform.position;
         seeker.StartPath(transform.position, posicionObjetivo, OnPathComplete);
@@ -112,7 +112,6 @@ public class Enemigo : Personaje
 
     void OnCollisionEnter2D(Collision2D coll)
     {
-        Debug.Log(gameObject.name + " ha chocado con " + coll.gameObject.name);
         if (coll.gameObject.name == "Jugador")
         {
             jugador.bajarVida(danioJugador);
@@ -129,9 +128,6 @@ public class Enemigo : Personaje
         if (coll.gameObject.name == "spriteNormal(Clone)")
         {
             coll.gameObject.GetComponent<Muro>().bajarVida(1);
-            Debug.Log(coll.gameObject.GetComponent<Muro>().vidaMuro);
-            // Cavar
-            //Destroy(coll.gameObject);
         }
     }
 
