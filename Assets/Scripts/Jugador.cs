@@ -32,7 +32,7 @@ public class Jugador : Personaje
     // Update is called once per frame
     void Update()
     {
-        mover(new Vector2());
+        mover();
         elegirArma();
         cambiarArma();
         resetImpulso();
@@ -169,7 +169,7 @@ public class Jugador : Personaje
     /// mueve al jugador
     /// </summary>
     /// <param name="destino">La posicion a la que se quiere ir</param>
-    protected override void mover(Vector2 destino)
+    protected override void mover()
     {
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
@@ -406,11 +406,6 @@ public class Jugador : Personaje
         Explosivo nuevaBomba = armaSeleccionada.GetComponent<Explosivo>();
         this.almacenMateriales = this.almacenMateriales - armaSeleccionada.GetComponent<ArmaBasica>().gastoDisparo;
         StartCoroutine(nuevaBomba.detonarBomba(controlarConstruccion(armaSeleccionada), delayBomba, radioBomba));
-    }
-
-    protected override void onCollisionEnter(Collision2D coll)
-    {
-        throw new NotImplementedException();
     }
     #endregion
 }
