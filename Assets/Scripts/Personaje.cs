@@ -31,8 +31,5 @@ public abstract class Personaje : MonoBehaviour {
     }
 
     // Función que mueve al personaje.
-    protected abstract void mover(Vector2 destino);
-
-    protected abstract void onCollisionEnter(Collision2D coll);
-
+    protected abstract void mover();
 }
