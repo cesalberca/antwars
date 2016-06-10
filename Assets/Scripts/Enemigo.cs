@@ -34,16 +34,28 @@ public class Enemigo : Personaje
     {
         this.velocidad = 1;
 
+        // Conseguimos los componentes necesarios
         seeker = GetComponent<Seeker>();
         controlador = GetComponent<CharacterController>();
         posicionBase = GameObject.Find("base(Clone)").transform;
         posicionJugador = GameObject.Find("Jugador").transform;
         baseJugador = GameObject.Find("base(Clone)").GetComponent<Base>();
         jugador = GameObject.Find("Jugador").GetComponent<Jugador>();
+        // Determinamos la posicion de la base
         posicionObjetivo = posicionBase.transform.position;
+        // Inicializamos la búsqueda de recorrido
         seeker.StartPath(transform.position, posicionObjetivo, OnPathComplete);
     }
 
+    public void FixedUpdate()
+    {
+        mover();
+    }
+
+    /// <summary>
+    /// Función que se ejecuta al completar el path por A*
+    /// </summary>
+    /// <param name="p">Path que se ha completado</param>
     public void OnPathComplete(Path p)
     {
         if (!p.error)
@@ -54,7 +66,68 @@ public class Enemigo : Personaje
         }
     }
 
-    public void FixedUpdate()
+    /// <summary>
+    /// Función que hace al enemigo persiguir al jugador
+    /// </summary>
+    void perseguirJugador()
+    {
+        transform.LookAt(posicionJugador.position);
+        transform.Rotate(new Vector3(0, -90, 0), Space.Self);
+
+        // Nos movemos en su dirección si la distancia con el jugador es mayor que uno, si no, le quitamos vida al jugador.
+        transform.Translate(new Vector3(velocidad * Time.deltaTime, 0, 0));
+    }
+
+    /// <summary>
+    /// Función que determina las colisiones con otros objetos que cuenten con un rigidbody
+    /// </summary>
+    /// <param name="coll">Elemento con el que se colisiona</param>
+    void OnCollisionEnter2D(Collision2D coll)
+    {
+        if (coll.gameObject.name == "Jugador")
+        {
+            jugador.bajarVida(danioJugador);
+            Destroy(this.gameObject);
+        } else if (coll.gameObject.name == "MunicionPistola(Clone)")
+        {
+            bajarVida(20);
+            Destroy(coll.gameObject);
+        } else if (coll.gameObject.name == "base(Clone)")
+        {
+            baseJugador.bajarVida(danioBase);
+            Destroy(this.gameObject);
+        }
+    }
+
+    /// <summary>
+    /// Función que determina si el enemigo está actualmente en contacto con un objeto.
+    /// </summary>
+    /// <param name="coll">Elemento con el que se colisiona</param>
+    void OnCollisionStay2D(Collision2D coll)
+    {
+        if (coll.gameObject.name == "spriteNormal(Clone)")
+        {
+            coll.gameObject.GetComponent<Muro>().bajarVida(1);
+        }
+    }
+
+
+    /// <summary>
+    /// Comprueba si el jugador está dentro de un radio determinado.
+    /// </summary>
+    /// <returns>Jugador dentro del radio o no</returns>
+    public bool dentroRadioJugador()
+    {
+        float radio = (transform.position - posicionJugador.position).sqrMagnitude;
+        if (radio < rangoDeteccionEnemigo)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    protected override void mover()
     {
         // Comprobamos que hay un path hacia el objetivo. Si no es así, cavamos.
         if (path == null)
@@ -77,7 +150,8 @@ public class Enemigo : Personaje
         {
             perseguirJugador();
             haSeguidoJugador = true;
-        } else
+        }
+        else
         {
             // Si ha seguido al jugador en algún momento, recalculamos la ruta.
             if (haSeguidoJugador)
@@ -99,61 +173,5 @@ public class Enemigo : Personaje
                 return;
             }
         }
-    }
-
-    void perseguirJugador()
-    {
-        transform.LookAt(posicionJugador.position);
-        transform.Rotate(new Vector3(0, -90, 0), Space.Self);
-
-        // Nos movemos en su dirección si la distancia con el jugador es mayor que uno, si no, le quitamos vida al jugador.
-        transform.Translate(new Vector3(velocidad * Time.deltaTime, 0, 0));
-    }
-
-    void OnCollisionEnter2D(Collision2D coll)
-    {
-        if (coll.gameObject.name == "Jugador")
-        {
-            jugador.bajarVida(danioJugador);
-            Destroy(this.gameObject);
-        } else if (coll.gameObject.name == "MunicionPistola(Clone)")
-        {
-            bajarVida(20);
-            Destroy(coll.gameObject);
-        }
-    }
-
-    void OnCollisionStay2D(Collision2D coll)
-    {
-        if (coll.gameObject.name == "spriteNormal(Clone)")
-        {
-            coll.gameObject.GetComponent<Muro>().bajarVida(1);
-        }
-    }
-
-
-    /// <summary>
-    /// Comprueba si el jugador está dentro de un radio determinado.
-    /// </summary>
-    /// <returns></returns>
-    public bool dentroRadioJugador()
-    {
-        float radio = (transform.position - posicionJugador.position).sqrMagnitude;
-        if (radio < rangoDeteccionEnemigo)
-        {
-            return true;
-        }
-
-        return false;
-    }
-
-    protected override void mover(Vector2 destino)
-    {
-        throw new NotImplementedException();
-    }
-
-    protected override void onCollisionEnter(Collision2D coll)
-    {
-        throw new NotImplementedException();
     }
 }
